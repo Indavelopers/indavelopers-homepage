@@ -1,0 +1,393 @@
+/* main.scss
+	Main SCSS file
+	Project: Indavelopers
+	URL: www.indavelopers.com
+	Author: Marcos Manuel Ortega
+	Version: 3
+	Date: 07/04/15
+*/
+
+
+$primary_color: #006eb6;
+$primary_color-shade_1: #e6f0f8;
+$primary_color-shade_2: #cce2f0;
+$primary_color-shade_3: #b2d4e9;
+$primary_color-shade_4: #99c5e2;
+$opposite_color: #ff8e00;
+$opposite_color-secondary: #ffbc00;
+
+
+/* CSS reset */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+li {
+	list-style-type: none;
+}
+img {
+	border: none;
+}
+
+
+/* Miscellanea */
+body {
+	font-family: Helvetica, Verdana, Geneva, sans-serif;
+	font-size: 16px;
+	color: $primary_color;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	text-align: center;
+	font-weight: bold;
+}
+h1 {
+	margin: 2rem 0 1.5rem;
+	font-size: 1.75rem;
+}
+h2 {
+	margin: 1.75rem 0 1.25rem;
+	font-size: 1.5rem;
+}
+h3 {
+	margin: 1.5rem 0 1rem;
+	font-size: 1.25rem;
+}
+h4 {
+	margin: 1.25rem 0 1rem;
+	font-size: 1.125rem;
+}
+
+p {
+	max-width: 640px;
+	margin: 1rem auto;
+	padding: 0 2rem;
+	line-height: 1.75rem;
+	text-align: justify;
+}
+
+a {
+	color: $primary_color;
+	
+	&:hover {
+		background: $opposite_color-secondary;
+	}	
+}
+.link-decorated {
+	padding: 0.05rem 0.15rem;
+	border-bottom: 0.1rem solid $opposite_color;
+}
+.link-not_decorated:hover {
+	background: none;
+}
+
+
+/* Base layout */
+.header {
+	width: 100%;
+	max-width: 824px;
+	margin: 4rem auto 2rem;
+	
+	a img {
+		display: block;
+		width: 100%;
+		max-width: 824px;
+		height: auto;
+	}	
+}
+
+
+.nav_bar {
+	position: relative;
+	left: calc(100% - 11.5rem);
+	width: 10rem;
+	margin: 2rem 0 4rem;
+	
+	& li a {
+		display: block;
+		margin: 0.15rem 0;
+		padding: 0.25rem 0;
+		font-weight: bold;
+		border-left: 0.25rem solid $opposite_color;
+	}	
+}
+
+.footer {
+	margin: 1.5rem 0 0;
+	padding: 2rem 0 4rem;
+	background: $primary_color-shade_1;
+	border-top: 0.25rem solid $primary_color-shade_4;
+	box-shadow: inset 0 2rem 1rem -1rem $primary_color-shade_4;
+
+	&-logo {
+		display: block;
+		width: 141px;
+		height: 100px;
+		margin: 1rem auto 0.5rem;
+	}
+	
+	&-contacto {
+		width: 12rem;
+		margin: 0.5rem auto 1rem;
+		text-align: center;
+		
+		li {
+			margin: 0.5rem 0;
+		}		
+	}
+	
+	&-links {
+		width: 11.5rem;
+		margin: 2rem auto;
+		
+		li {
+			display: inline-block;
+		
+			&:first-child {
+				border-right: 0.2rem solid $opposite_color;
+			}
+			&:last-child {
+				border-left: 0.2rem solid $opposite_color;
+			}
+			
+			a {
+				display: block;
+				padding: 0.15rem 0.25rem;
+			}
+		}
+	}
+	
+	&-firma {
+		width: 100%;
+		max-width: 21rem;
+		margin: 2rem auto;
+		text-align: center;
+		font-size: 0.75rem;
+	}
+	
+	&-iconos {
+		width: 156px;
+		margin: 2rem auto;
+	
+		li {
+			display: inline-block;
+			margin: 0 6px;
+		}
+	}
+}
+
+
+/* Content */
+.content-presentacion,
+.content-tarjetas-p_centrado {
+	width: 90%;
+	max-width: 40rem;
+	text-align: center;
+}
+.content-presentacion {
+	margin: 4rem auto;
+}
+.content-tarjetas-p_centrado {
+	margin: 2rem auto;
+}
+
+.content-tarjetas {
+	margin: 2rem 0 1rem;
+	
+	& > li {
+		padding: 1rem 0;
+		
+		&:nth-child(odd) {
+			background: $primary_color-shade_1;
+		}
+		&:nth-child(even) {
+			background: $primary_color-shade_2;
+		}		
+	}
+}
+
+.content-tarjetas-bloques_5-5,
+.content-tarjetas-bloques_4-6,
+.content-tarjetas-bloques_6-4 {
+	& > li {
+		margin: 1.5rem 0;
+	}
+}
+
+
+.content-tarjetas-lista_bloques {
+	margin: 2rem 0 1rem;
+	
+	& > li {
+		max-width: 50rem;
+		margin: 2rem auto;
+		padding: 1rem 0 2rem;
+		background: #b2d4e9;
+	
+		ul {
+			margin: 1rem 0;
+			
+			li {
+				margin: 0.25rem 0;
+				text-align: center;
+			}			
+		}
+	}
+}
+
+.content-tarjetas-lista {
+	margin: 2rem 0;
+
+	li {
+		margin: 1rem 0;
+		text-align: center;
+	
+		b {
+			display: block;
+			padding: 0.25rem 0;
+		}
+	}
+}
+
+
+.content-tarjetas-img_480,
+.content-tarjetas-img_320,
+.content-tarjetas-img_64,
+.content-tarjetas-img_16 {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+.content-tarjetas-img_480 {
+	max-width: 480px;
+}
+.content-tarjetas-img_320 {
+	max-width: 320px;
+}
+.content-tarjetas-img_64 {
+	max-width: 64px;
+}
+.content-tarjetas-img_16 {
+	max-width: 120px;
+}
+
+
+/* Media queries */
+@media screen and (min-width: 28.5rem) {
+	.nav_bar {
+		position: relative;
+		left: calc(100% - 25rem - 0.5rem);
+		width: 25rem;
+	
+		li {
+			display: inline-block;
+			width: 5.5rem;
+		
+			&:first-child,
+			&:nth-child(4) {
+				width: 10.5rem;
+			}
+			
+			&:nth-child(2) {
+				width: 8.5rem;
+			}
+			
+			a {
+				padding: 0.25rem 0 0 0.5rem;
+			}
+		}
+	}
+}
+
+
+@media screen and (min-width: 51.5rem) {
+	.nav_bar {
+		position: relative;
+		left: calc(50% + 51.5rem / 2 - 41.5rem);
+		width: 41.5rem;
+	}
+	
+	.content-tarjetas-lista_bloques > li {
+		img {
+			display: inline-block;
+			padding: 0 1rem;
+			vertical-align: middle;
+			border-right: 0.2rem solid orange;
+		}
+		ul {
+			display: inline-block;
+			width: 25rem;
+			margin: 1rem;
+			box-sizing: border-box;
+			vertical-align: middle;
+		}	
+	}
+}
+
+
+@media screen and (min-width: 64rem) {
+	.footer {
+		position: relative;
+		height: 20rem;
+	
+		&-logo {
+			position: absolute;
+			left: calc(3rem + 6rem - 71px);
+			bottom: 3rem;
+		}
+		&-contacto {
+			position: absolute;
+			left: 3rem;
+			bottom: calc(3rem + 100px + 0.25rem);
+		}
+		&-links {
+			position: absolute;
+			left: calc(50% - 5.75rem);
+			bottom: 3rem;
+		}
+		&-firma {
+			position: absolute;
+			right: 3rem;
+			bottom: 3rem;
+			width: 18rem;
+		}
+		&-iconos {
+			position: absolute;
+			right: calc(3rem + 9rem - 78px);
+			bottom: 5rem;
+		}
+	}
+
+	.content-tarjetas-bloques_5-5 > li,
+	.content-tarjetas-bloques_4-6 > li,
+	.content-tarjetas-bloques_6-4 > li {
+		display: inline-block;
+		width: 49.5%;
+		vertical-align: middle;
+	}
+	.content-tarjetas-bloques_5-5 > li:nth-child(odd),
+	.content-tarjetas-bloques_4-6 > li:nth-child(odd) {
+		border-right: 0.2rem solid $opposite_color-secondary;
+	}
+	.content-tarjetas-bloques_6-4 > li:nth-child(even) {
+		border-left: 0.2rem solid $opposite_color-secondary;
+	}
+	#content-tarjetas-bloques_6-4-borde_contrario > li:nth-child(odd) {
+		border-right: 0.2rem solid $opposite_color-secondary;
+	}
+	#content-tarjetas-bloques_6-4-borde_contrario > li:nth-child(even) {
+		border-left: none;
+	}	
+	
+	p {
+		max-width: 480px;
+	}
+}

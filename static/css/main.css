@@ -1,0 +1,287 @@
+/* main.scss
+	Main SCSS file
+	Project: Indavelopers
+	URL: www.indavelopers.com
+	Author: Marcos Manuel Ortega
+	Version: 3
+	Date: 07/04/15
+*/
+/* CSS reset */
+* {
+  margin: 0;
+  padding: 0; }
+
+a {
+  text-decoration: none; }
+
+li {
+  list-style-type: none; }
+
+img {
+  border: none; }
+
+/* Miscellanea */
+body {
+  font-family: Helvetica, Verdana, Geneva, sans-serif;
+  font-size: 16px;
+  color: #006eb6; }
+
+h1,
+h2,
+h3,
+h4 {
+  text-align: center;
+  font-weight: bold; }
+
+h1 {
+  margin: 2rem 0 1.5rem;
+  font-size: 1.75rem; }
+
+h2 {
+  margin: 1.75rem 0 1.25rem;
+  font-size: 1.5rem; }
+
+h3 {
+  margin: 1.5rem 0 1rem;
+  font-size: 1.25rem; }
+
+h4 {
+  margin: 1.25rem 0 1rem;
+  font-size: 1.125rem; }
+
+p {
+  max-width: 640px;
+  margin: 1rem auto;
+  padding: 0 2rem;
+  line-height: 1.75rem;
+  text-align: justify; }
+
+a {
+  color: #006eb6; }
+  a:hover {
+    background: #ffbc00; }
+
+.link-decorated {
+  padding: 0.05rem 0.15rem;
+  border-bottom: 0.1rem solid #ff8e00; }
+
+.link-not_decorated:hover {
+  background: none; }
+
+/* Base layout */
+.header {
+  width: 100%;
+  max-width: 824px;
+  margin: 4rem auto 2rem; }
+  .header a img {
+    display: block;
+    width: 100%;
+    max-width: 824px;
+    height: auto; }
+
+.nav_bar {
+  position: relative;
+  left: calc(100% - 11.5rem);
+  width: 10rem;
+  margin: 2rem 0 4rem; }
+  .nav_bar li a {
+    display: block;
+    margin: 0.15rem 0;
+    padding: 0.25rem 0;
+    font-weight: bold;
+    border-left: 0.25rem solid #ff8e00; }
+
+.footer {
+  margin: 1.5rem 0 0;
+  padding: 2rem 0 4rem;
+  background: #e6f0f8;
+  border-top: 0.25rem solid #99c5e2;
+  box-shadow: inset 0 2rem 1rem -1rem #99c5e2; }
+  .footer-logo {
+    display: block;
+    width: 141px;
+    height: 100px;
+    margin: 1rem auto 0.5rem; }
+  .footer-contacto {
+    width: 12rem;
+    margin: 0.5rem auto 1rem;
+    text-align: center; }
+    .footer-contacto li {
+      margin: 0.5rem 0; }
+  .footer-links {
+    width: 11.5rem;
+    margin: 2rem auto; }
+    .footer-links li {
+      display: inline-block; }
+      .footer-links li:first-child {
+        border-right: 0.2rem solid #ff8e00; }
+      .footer-links li:last-child {
+        border-left: 0.2rem solid #ff8e00; }
+      .footer-links li a {
+        display: block;
+        padding: 0.15rem 0.25rem; }
+  .footer-firma {
+    width: 100%;
+    max-width: 21rem;
+    margin: 2rem auto;
+    text-align: center;
+    font-size: 0.75rem; }
+  .footer-iconos {
+    width: 156px;
+    margin: 2rem auto; }
+    .footer-iconos li {
+      display: inline-block;
+      margin: 0 6px; }
+
+/* Content */
+.content-presentacion,
+.content-tarjetas-p_centrado {
+  width: 90%;
+  max-width: 40rem;
+  text-align: center; }
+
+.content-presentacion {
+  margin: 4rem auto; }
+
+.content-tarjetas-p_centrado {
+  margin: 2rem auto; }
+
+.content-tarjetas {
+  margin: 2rem 0 1rem; }
+  .content-tarjetas > li {
+    padding: 1rem 0; }
+    .content-tarjetas > li:nth-child(odd) {
+      background: #e6f0f8; }
+    .content-tarjetas > li:nth-child(even) {
+      background: #cce2f0; }
+
+.content-tarjetas-bloques_5-5 > li,
+.content-tarjetas-bloques_4-6 > li,
+.content-tarjetas-bloques_6-4 > li {
+  margin: 1.5rem 0; }
+
+.content-tarjetas-lista_bloques {
+  margin: 2rem 0 1rem; }
+  .content-tarjetas-lista_bloques > li {
+    max-width: 50rem;
+    margin: 2rem auto;
+    padding: 1rem 0 2rem;
+    background: #b2d4e9; }
+    .content-tarjetas-lista_bloques > li ul {
+      margin: 1rem 0; }
+      .content-tarjetas-lista_bloques > li ul li {
+        margin: 0.25rem 0;
+        text-align: center; }
+
+.content-tarjetas-lista {
+  margin: 2rem 0; }
+  .content-tarjetas-lista li {
+    margin: 1rem 0;
+    text-align: center; }
+    .content-tarjetas-lista li b {
+      display: block;
+      padding: 0.25rem 0; }
+
+.content-tarjetas-img_480,
+.content-tarjetas-img_320,
+.content-tarjetas-img_64,
+.content-tarjetas-img_16 {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto; }
+
+.content-tarjetas-img_480 {
+  max-width: 480px; }
+
+.content-tarjetas-img_320 {
+  max-width: 320px; }
+
+.content-tarjetas-img_64 {
+  max-width: 64px; }
+
+.content-tarjetas-img_16 {
+  max-width: 120px; }
+
+/* Media queries */
+@media screen and (min-width: 28.5rem) {
+  .nav_bar {
+    position: relative;
+    left: calc(100% - 25rem - 0.5rem);
+    width: 25rem; }
+    .nav_bar li {
+      display: inline-block;
+      width: 5.5rem; }
+      .nav_bar li:first-child, .nav_bar li:nth-child(4) {
+        width: 10.5rem; }
+      .nav_bar li:nth-child(2) {
+        width: 8.5rem; }
+      .nav_bar li a {
+        padding: 0.25rem 0 0 0.5rem; } }
+@media screen and (min-width: 51.5rem) {
+  .nav_bar {
+    position: relative;
+    left: calc(50% + 51.5rem / 2 - 41.5rem);
+    width: 41.5rem; }
+
+  .content-tarjetas-lista_bloques > li img {
+    display: inline-block;
+    padding: 0 1rem;
+    vertical-align: middle;
+    border-right: 0.2rem solid orange; }
+  .content-tarjetas-lista_bloques > li ul {
+    display: inline-block;
+    width: 25rem;
+    margin: 1rem;
+    box-sizing: border-box;
+    vertical-align: middle; } }
+@media screen and (min-width: 64rem) {
+  .footer {
+    position: relative;
+    height: 20rem; }
+    .footer-logo {
+      position: absolute;
+      left: calc(3rem + 6rem - 71px);
+      bottom: 3rem; }
+    .footer-contacto {
+      position: absolute;
+      left: 3rem;
+      bottom: calc(3rem + 100px + 0.25rem); }
+    .footer-links {
+      position: absolute;
+      left: calc(50% - 5.75rem);
+      bottom: 3rem; }
+    .footer-firma {
+      position: absolute;
+      right: 3rem;
+      bottom: 3rem;
+      width: 18rem; }
+    .footer-iconos {
+      position: absolute;
+      right: calc(3rem + 9rem - 78px);
+      bottom: 5rem; }
+
+  .content-tarjetas-bloques_5-5 > li,
+  .content-tarjetas-bloques_4-6 > li,
+  .content-tarjetas-bloques_6-4 > li {
+    display: inline-block;
+    width: 49.5%;
+    vertical-align: middle; }
+
+  .content-tarjetas-bloques_5-5 > li:nth-child(odd),
+  .content-tarjetas-bloques_4-6 > li:nth-child(odd) {
+    border-right: 0.2rem solid #ffbc00; }
+
+  .content-tarjetas-bloques_6-4 > li:nth-child(even) {
+    border-left: 0.2rem solid #ffbc00; }
+
+  #content-tarjetas-bloques_6-4-borde_contrario > li:nth-child(odd) {
+    border-right: 0.2rem solid #ffbc00; }
+
+  #content-tarjetas-bloques_6-4-borde_contrario > li:nth-child(even) {
+    border-left: none; }
+
+  p {
+    max-width: 480px; } }
+
+/*# sourceMappingURL=main.css.map */

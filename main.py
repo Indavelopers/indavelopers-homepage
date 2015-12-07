@@ -24,4 +24,4 @@ from scripts.handlers import *
 URLS = [('/', Home),
         ('/.*', Error404)]
 
-app = webapp2.WSGIApplication(URLS, debug=False)
+app = webapp2.WSGIApplication(URLS, debug=True)

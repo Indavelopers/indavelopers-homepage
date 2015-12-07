@@ -12,6 +12,7 @@ skip_files:
 - ^(.*/)?\..*$
 - ^(.*/)?\.map$
 - ^(.*/)?\.scss$
+- ^(.*/)?\.md$
 
 handlers:
 - url: /favicon\.ico

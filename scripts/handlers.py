@@ -34,9 +34,34 @@ class MainHandler(webapp2.RequestHandler):
         self.response.out.write(t.render())
 
 
-class Home(MainHandler):
+class StaticPage(MainHandler):
     def get(self):
-        self.render('home.html')
+        templates = {'': 'home.html',
+                     'proyectos': 'proyectos.html',
+                     'contacto': 'contacto.html',
+                     'aviso-legal': 'aviso-legal.html',
+                     'mapa-web': 'mapa-web.html'}
+
+        page = self.request.path.split('/')[-1]
+
+        template = templates[page]
+
+        self.render(template)
+
+
+class Noticias(MainHandler):
+    def get(self):
+        self.render('noticias.html')
+
+
+class Blog(MainHandler):
+    def get(self):
+        self.render('blog.html')
+
+
+class Eventos(MainHandler):
+    def get(self):
+        self.render('eventos.html')
 
 
 class Error404(MainHandler):

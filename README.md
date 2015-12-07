@@ -5,9 +5,9 @@
 Este proyecto utiliza los siguientes servicios, técnicas y tecnologías:
 
  - Google App Engine para Python (2.7).
- ..- Webapp2 como framework web.
- ..- Jinja2 como motor de plantillas HTML.
- ..- SASS como preprocesador CSS.
+   - Webapp2 como framework web.
+   - Jinja2 como motor de plantillas HTML.
+   - SASS como preprocesador CSS.
 
 El objetivo de este repositorio es la divulgación de conocimiento, mostrando un ejemplo de web real.
 

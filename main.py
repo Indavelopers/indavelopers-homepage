@@ -21,7 +21,18 @@ from scripts.handlers import *
 
 
 # -- Handler mapping --
-URLS = [('/', Home),
+URLS = [('/', StaticPage),
+        ('/proyectos', StaticPage),
+        ('/contacto', StaticPage),
+        ('/aviso-legal', StaticPage),
+        ('/mapa-web', StaticPage),
+        ('/noticias', Noticias),
+        ('/noticias/blog', Blog),
+        ('/noticias/eventos', Eventos),
         ('/.*', Error404)]
 
+URLS = [(u[0] + '[/]?', u[1]) for u in URLS]
+
 app = webapp2.WSGIApplication(URLS, debug=True)
+
+# todo Blog post and event pages

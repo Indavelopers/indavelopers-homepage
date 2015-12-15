@@ -15,9 +15,9 @@ sys.path.append('C:\\Program Files (x86)\\Google\\google_appengine')
 
 
 # -- Imports --
+import os
 import webapp2
 import jinja2
-import os
 
 
 # Initialize Jinja2 environment
@@ -49,6 +49,11 @@ class StaticPage(MainHandler):
         self.render(template)
 
 
+class Proyectos(MainHandler):
+    def get(self):
+        self.render('proyectos.html')
+
+
 class Noticias(MainHandler):
     def get(self):
         self.render('noticias.html')
@@ -59,9 +64,34 @@ class Blog(MainHandler):
         self.render('blog.html')
 
 
+class PaginaPost(MainHandler):
+    def get(self):
+        self.render('post.html')
+
+
 class Eventos(MainHandler):
     def get(self):
         self.render('eventos.html')
+
+
+class PaginaEvento(MainHandler):
+    def get(self):
+        self.render('evento.html')
+
+
+class AdminInicio(MainHandler):
+    def get(self):
+        self.render('admin-inicio.html')
+
+
+class AdminProyectos(MainHandler):
+    def get(self):
+        self.render('admin-proyectos.html')
+
+
+class AdminNoticias(MainHandler):
+    def get(self):
+        self.render('admin-noticias.html')
 
 
 class Error404(MainHandler):

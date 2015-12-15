@@ -19,20 +19,25 @@ import webapp2
 
 from scripts.handlers import *
 
-
 # -- Handler mapping --
 URLS = [('/', StaticPage),
-        ('/proyectos', StaticPage),
+        ('/proyectos', Proyectos),
+        ('/noticias', Noticias),
+        ('/noticias/blog', Blog),
+        ('/noticias/blog/(.*)', PaginaPost),
+        ('/noticias/eventos', Eventos),
+        ('/noticias/eventos/(.*)', PaginaEvento),
         ('/contacto', StaticPage),
         ('/aviso-legal', StaticPage),
         ('/mapa-web', StaticPage),
-        ('/noticias', Noticias),
-        ('/noticias/blog', Blog),
-        ('/noticias/eventos', Eventos),
+        ('/admin', AdminInicio),
+        ('/admin/proyectos', AdminProyectos),
+        ('/admin/noticias', AdminNoticias),
         ('/.*', Error404)]
 
 URLS = [(u[0] + '[/]?', u[1]) for u in URLS]
 
 app = webapp2.WSGIApplication(URLS, debug=True)
 
-# todo Blog post and event pages
+# todo Admin editar entrada
+# todo Admin eliminar entrada

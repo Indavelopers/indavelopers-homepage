@@ -29,8 +29,8 @@ URLS = [('/', StaticPage),
         ('/admin/proyectos/(.*)', AdminProjectsEdit),
         ('/admin/proyectos/(.*)/eliminar', AdminProjectsDelete),
         ('/admin/noticias', AdminNews),
-        ('/admin/noticias/(.*)', AdminNewsEdit),
-        ('/admin/noticias/(.*)/eliminar', AdminNewsDelete),
+        ('/admin/noticias/(blog|eventos)/(.*)', AdminNewsEdit),
+        ('/admin/noticias/(blog|eventos)(.*)/eliminar', AdminNewsDelete),
         ('/mapaweb', Webmap),
         ('/.*', Error404)]
 

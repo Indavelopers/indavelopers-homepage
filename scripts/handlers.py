@@ -35,7 +35,7 @@ class MainHandler(webapp2.RequestHandler):
 
 class StaticPage(MainHandler):
 	def get(self):
-		templates = {'': 'home.html',
+		templates = {'': 'inicio.html',
 		             'contacto': 'contacto.html',
 		             'aviso-legal': 'aviso-legal.html',
 		             'mapa-web': 'mapa-web.html'}

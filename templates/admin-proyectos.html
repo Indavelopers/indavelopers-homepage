@@ -1,0 +1,65 @@
+{% extends "admin-base.html" %}
+
+{% block head %}
+<title>Proyectos | Panel de administración</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="adminContent">
+    <h2>Proyectos</h2>
+
+	<ul class="adminList">
+		<li>
+			<h3>Casos de éxito</h3>
+
+			<ul>
+				{% for p_sc in projects['success_cases'] %}
+					<li>
+						<h3>{{p_sc.title}}</h3>
+
+						<p>{{p_sc.description}}</p>
+
+						<a href="/admin/proyectos/{{p_sc.key.id()}}">Editar</a>
+						<a href="/admin/proyectos/{{p_sc.key.id()}}/eliminar">Eliminar</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</li>
+
+		<li>
+			<h3>Iniciativa propia</h3>
+
+			<ul>
+				{% for p_oi in projects['own_initiative'] %}
+					<li>
+						<h3>{{p_oi.title}}</h3>
+
+						<p>{{p_oi.description}}</p>
+
+						<a href="/admin/proyectos/{{p_oi.key.id()}}">Editar</a>
+						<a href="/admin/proyectos/{{p_oi.key.id()}}/eliminar">Eliminar</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</li>
+
+		<li>
+			<h3>Experimentación</h3>
+
+			<ul>
+				{% for p_ex in projects['experimentation'] %}
+					<li>
+						<h3>{{p_ex.title}}</h3>
+
+						<p>{{p_ex.description}}</p>
+
+						<a href="/admin/proyectos/{{p_ex.key.id()}}">Editar</a>
+						<a href="/admin/proyectos/{{p_ex.key.id()}}/eliminar">Eliminar</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</li>
+	</ul>
+</div>
+{% endblock %}

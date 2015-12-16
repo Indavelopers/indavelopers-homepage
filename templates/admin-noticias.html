@@ -1,0 +1,48 @@
+{% extends "admin-base.html" %}
+
+{% block head %}
+<title>Noticias | Panel de administración</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="adminContent">
+    <h2>Noticias</h2>
+
+	<ul class="adminList">
+		<li>
+			<h3>Blog</h3>
+
+			<ul>
+				{% for p in news['blog'] %}
+					<li>
+						<h3>{{p.title}}</h3>
+
+						<p>{{p.description}}</p>
+
+						<a href="/admin/noticias/blog/{{p.key.id()}}">Editar</a>
+						<a href="/admin/noticias/blog/{{p.key.id()}}/eliminar">Eliminar</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</li>
+
+		<li>
+			<h3>Eventos</h3>
+
+			<ul>
+				{% for n in news['events'] %}
+					<li>
+						<h3>{{n.title}}</h3>
+
+						<p>{{n.description}}</p>
+
+						<a href="/admin/noticias/eventos/{{n.key.id()}}">Editar</a>
+						<a href="/admin/noticias/eventos/{{n.key.id()}}/eliminar">Eliminar</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</li>
+	</ul>
+</div>
+{% endblock %}

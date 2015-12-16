@@ -8,16 +8,12 @@
 # Version: v4.0 - 12/2015
 
 
-# -- Recognize App Engine modules --
-import sys
-
-sys.path.append('C:\\Program Files (x86)\\Google\\google_appengine')
-
-
 # -- Imports --
 import os
 import webapp2
 import jinja2
+
+from models import *
 
 
 # Initialize Jinja2 environment
@@ -28,74 +24,132 @@ jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),
 
 # -- Handlers --
 class MainHandler(webapp2.RequestHandler):
-    def render(self, template):
-        t = jinja_env.get_template(template)
+	def render(self, template, params=None):
+		if not params:
+			params = {}
 
-        self.response.out.write(t.render())
+		t = jinja_env.get_template(template)
+
+		self.response.out.write(t.render(params))
 
 
 class StaticPage(MainHandler):
-    def get(self):
-        templates = {'': 'home.html',
-                     'proyectos': 'proyectos.html',
-                     'contacto': 'contacto.html',
-                     'aviso-legal': 'aviso-legal.html',
-                     'mapa-web': 'mapa-web.html'}
+	def get(self):
+		templates = {'': 'home.html',
+		             'contacto': 'contacto.html',
+		             'aviso-legal': 'aviso-legal.html',
+		             'mapa-web': 'mapa-web.html'}
 
-        page = self.request.path.split('/')[-1]
+		page = self.request.path.split('/')[-1]
 
-        template = templates[page]
+		try:
+			template = templates[page]
 
-        self.render(template)
+		except KeyError:
+			template = 'error-404.html'
 
-
-class Proyectos(MainHandler):
-    def get(self):
-        self.render('proyectos.html')
+		self.render(template)
 
 
-class Noticias(MainHandler):
-    def get(self):
-        self.render('noticias.html')
+class Projects(MainHandler):
+	def get(self):
+		projects = Project.get_projects()
+
+		params = {'proyectos': projects}
+
+		self.render('proyectos.html', params)
+
+
+class News(MainHandler):
+	def get(self):
+		posts = Post.get_posts(3)
+
+		events = Events.get_events(3)
+
+		params = {'posts': posts,
+		          'eventos': events}
+
+		self.render('noticias.html', params)
 
 
 class Blog(MainHandler):
-    def get(self):
-        self.render('blog.html')
+	def get(self):
+		posts = Post.get_posts()
+
+		params = {'posts': posts}
+
+		self.render('blog.html', params)
 
 
-class PaginaPost(MainHandler):
-    def get(self):
-        self.render('post.html')
+class PostPage(MainHandler):
+	def get(self, title_url):
+		post = Post.get_by_title_url(title_url)
+
+		params = {'post': post}
+
+		self.render('post.html', params)
 
 
-class Eventos(MainHandler):
-    def get(self):
-        self.render('eventos.html')
+class Events(MainHandler):
+	def get(self):
+		events = Event.get_events()
+
+		params = {'events': events}
+
+		self.render('events.html', params)
 
 
-class PaginaEvento(MainHandler):
-    def get(self):
-        self.render('evento.html')
+class EventPage(MainHandler):
+	def get(self, title_url):
+		event = Event.get_by_title_url(title_url)
+
+		params = {'event': event}
+
+		self.render('eventos.html', params)
 
 
-class AdminInicio(MainHandler):
-    def get(self):
-        self.render('admin-inicio.html')
+class AdminHome(MainHandler):
+	def get(self):
+		self.render('admin-inicio.html')
 
 
-class AdminProyectos(MainHandler):
-    def get(self):
-        self.render('admin-proyectos.html')
+class AdminProjects(MainHandler):
+	def get(self):
+		self.render('admin-proyectos.html')
 
 
-class AdminNoticias(MainHandler):
-    def get(self):
-        self.render('admin-noticias.html')
+class AdminProjectsEdit(MainHandler):
+	def get(self):
+		self.render('admin-proyectos-editar.html')
+
+
+class AdminProjectsDelete(MainHandler):
+	def get(self):
+		self.render('admin-proyectos-editar.html')
+
+
+class AdminNews(MainHandler):
+	def get(self):
+		self.render('admin-noticias.html')
+
+
+class AdminNewsEdit(MainHandler):
+	def get(self):
+		self.render('admin-noticias-editar.html')
+
+
+class AdminNewsDelete(MainHandler):
+	def get(self):
+		self.render('admin-noticias-editar.html')
+
+
+class Webmap(MainHandler):
+	def get(self):
+		self.response.out.write('')
 
 
 class Error404(MainHandler):
-    def get(self):
-        self.error(404)
+	def get(self):
+		self.error(404)
 
-        self.render('error-404.html')
+		self.render('error-404.html')

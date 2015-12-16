@@ -16,21 +16,13 @@
 		<h2>Casos de éxito</h2>
 
 		<ul>
-			<li>
-				<h3>Proyecto1</h3>
+			{% for p_sc in projects['success_cases'] %}
+				<li>
+					<h3>{{p_sc.title}}</h3>
 
-				<p>Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1</p>
-			</li>
-			<li>
-				<h3>Proyecto2</h3>
-
-				<p>Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1</p>
-			</li>
-			<li>
-				<h3>Proyecto3</h3>
-
-				<p>Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1</p>
-			</li>
+					<p>{{p_sc.description}}</p>
+				</li>
+			{% endfor %}
 		</ul>
 	</li>
 
@@ -38,21 +30,13 @@
 		<h2>Iniciativa propia</h2>
 
 		<ul>
-			<li>
-				<h3>Proyecto1</h3>
+			{% for p_oi in projects['own_initiative'] %}
+				<li>
+					<h3>{{p_oi.title}}</h3>
 
-				<p>Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1</p>
-			</li>
-			<li>
-				<h3>Proyecto2</h3>
-
-				<p>Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1</p>
-			</li>
-			<li>
-				<h3>Proyecto3</h3>
-
-				<p>Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1</p>
-			</li>
+					<p>{{p_oi.description}}</p>
+				</li>
+			{% endfor %}
 		</ul>
 	</li>
 
@@ -60,21 +44,13 @@
 		<h2>Experimentación</h2>
 
 		<ul>
-			<li>
-				<h3>Proyecto1</h3>
+			{% for p_ex in projects['experimentation'] %}
+				<li>
+					<h3>{{p_ex.title}}</h3>
 
-				<p>Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1</p>
-			</li>
-			<li>
-				<h3>Proyecto2</h3>
-
-				<p>Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1</p>
-			</li>
-			<li>
-				<h3>Proyecto3</h3>
-
-				<p>Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1 Descripción proyecto1</p>
-			</li>
+					<p>{{p_ex.description}}</p>
+				</li>
+			{% endfor %}
 		</ul>
 	</li>
 </ul>

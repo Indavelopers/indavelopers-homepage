@@ -28,8 +28,18 @@ class ParentProjectPostEvent(ndb.Model):
 	def get_by_id(self):
 		pass
 
-	def get_by_title_url(self):
-		pass
+	@classmethod
+	def get_by_title_url(cls, title_url):
+		entity = mc.get('entity-kind={}-title_url={}'.format(cls.__name__, title_url))
+
+		if not entity:
+			q_e = cls.query(cls.title_url == title_url, ancestor=model_key(cls.__name__))
+
+			entity = q_e.get()
+
+			mc.set('entity-kind={}-title_url={}'.format(cls.__name__, title_url), title_url)
+
+		return entity
 
 	def validate_params(self):
 		pass
@@ -49,13 +59,13 @@ class Project(ParentProjectPostEvent):
 		projects = mc.get('projects')
 
 		if not projects:
-			q_p_sc = cls.query(cls.type_ == 'success_cases', parent=model_key('project'))
+			q_p_sc = cls.query(cls.type_ == 'success_cases', parent=model_key('Project'))
 			projects_sc = list(q_p_sc.iter())
 
-			q_p_ow = cls.query(cls.type_ == 'own_initiative', parent=model_key('project'))
+			q_p_ow = cls.query(cls.type_ == 'own_initiative', parent=model_key('Project'))
 			projects_ow = list(q_p_ow.iter())
 
-			q_p_ex = cls.query(cls.type_ == 'experimentation', parent=model_key('project'))
+			q_p_ex = cls.query(cls.type_ == 'experimentation', parent=model_key('Project'))
 			projects_ex = list(q_p_ex.iter())
 
 			projects = {'success_cases': projects_sc,
@@ -73,7 +83,7 @@ class Post(ParentProjectPostEvent):
 		posts = mc.get('posts-n={}'.format(n))
 
 		if not posts:
-			q_p = cls.query(parent=model_key('post')).order(-cls.date)
+			q_p = cls.query(parent=model_key('Post')).order(-cls.date)
 
 			if n:
 				posts = q_p.fetch(n)
@@ -93,7 +103,7 @@ class Event(ParentProjectPostEvent):
 		events = mc.get('events-n={}'.format(n))
 
 		if not events:
-			q_p = cls.query(parent=model_key('post')).order(-cls.date)
+			q_p = cls.query(parent=model_key('Event')).order(-cls.date)
 
 			if n:
 				events = q_p.fetch(n)

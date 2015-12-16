@@ -40,7 +40,7 @@ URLS = [(u[0] + '[/]?', u[1]) for u in URLS]
 app = webapp2.WSGIApplication(URLS, debug=True)
 
 # todo home cifras
-# todo todas paginas description tag
+# todo plantilla blog, proyectos, servicios, etc.
 
 # todo Admin editar entrada
 # todo Admin eliminar entrada

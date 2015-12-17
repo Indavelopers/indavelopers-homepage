@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 
 # Project: "Indavelopers"
-# Script: handlers.py - Handlers
-# App identifier: indavelopers
+# Script: models.py - Datastore models
+# App identifier: Indavelopers
 # URL: www.indavelopers.com
 # Author: Marcos Manuel Ortega - Indavelopers
 # Version: v4.0 - 12/2015
 
 
 # -- Imports --
+from globals import *
+
 from google.appengine.ext import ndb
 from google.appengine.api import memcache as mc
 
@@ -25,8 +27,9 @@ class ParentProjectPostEvent(ndb.Model):
 	date = ndb.DateTimeProperty(auto_now=True)
 	description = ndb.StringProperty()
 
-	def get_by_id(self):
-		pass
+	@classmethod
+	def get_by_id(cls, id_):
+		return cls.get_by_id(int(id_), parent=model_key(cls))
 
 	@classmethod
 	def get_by_title_url(cls, title_url):
@@ -41,31 +44,54 @@ class ParentProjectPostEvent(ndb.Model):
 
 		return entity
 
-	def validate_params(self):
+	@classmethod
+	def get_title_url(cls):
 		pass
 
-	def get_title_url(self):
-		pass
+	@classmethod
+	def _validate_params_base(cls, params):
+		error = []
+
+		if not validate_value(params['title'], 'title') or not validate_str(params['title']):
+			error += 'T&iactue;tulo inv&aacute;lido.'
+			# todo str to HTML
+
+		if not validate_str(params['description'], 1400):
+			error += 'Descripci&oacute;n inv&aacute;lida.'
+
+		return error
+
+	@classmethod
+	def _edit_instance_base(cls, params):
+		if params['instance'] == 'nuevo':
+			instance = cls(parent=model_key(cls))
+		else:
+			instance = params['instance']
+
+		instance.title = params['title']
+		instance.description = markdown_to_html(params['description'])
+
+		return instance
 
 	def delete_entity(self):
-		pass
+		self.key.delete()
 
 
 class Project(ParentProjectPostEvent):
-	type_ = ndb.StringProperty(required=True, choices=['success_cases', 'own_initiative', 'experimentation'])
+	type_ = ndb.StringProperty(required=True, choices=['casos-exito', 'iniciativa-propia', 'experimentacion'])
 
 	@classmethod
 	def get_projects(cls):
 		projects = mc.get('projects')
 
 		if not projects:
-			q_p_sc = cls.query(cls.type_ == 'success_cases', parent=model_key('Project'))
+			q_p_sc = cls.query(cls.type_ == 'success_cases', parent=model_key(cls))
 			projects_sc = list(q_p_sc.iter())
 
-			q_p_ow = cls.query(cls.type_ == 'own_initiative', parent=model_key('Project'))
+			q_p_ow = cls.query(cls.type_ == 'own_initiative', parent=model_key(cls))
 			projects_ow = list(q_p_ow.iter())
 
-			q_p_ex = cls.query(cls.type_ == 'experimentation', parent=model_key('Project'))
+			q_p_ex = cls.query(cls.type_ == 'experimentation', parent=model_key(cls))
 			projects_ex = list(q_p_ex.iter())
 
 			projects = {'success_cases': projects_sc,
@@ -76,8 +102,30 @@ class Project(ParentProjectPostEvent):
 
 		return projects
 
+	@classmethod
+	def validate_params(cls, params):
+		error = cls._validate_params_base(params)
+
+		if params['type'] != 'casos-exito' and params['type'] != 'iniciativa-propia' \
+			and params['type'] != 'experimentacion':
+			error += 'Tipo inv&aacute;lido.'
+
+		return '<br>'.join(error) or True
+
+	@classmethod
+	def edit_instance(cls, params):
+		project = cls._edit_instance_base(params)
+
+		project.type_ = params['type']
+
+		project.put()
+
+		return project
+
 
 class Post(ParentProjectPostEvent):
+	type = ndb.StringProperty(required=True, default='blog')
+
 	@classmethod
 	def get_posts(cls, n=0):
 		posts = mc.get('posts-n={}'.format(n))
@@ -96,14 +144,35 @@ class Post(ParentProjectPostEvent):
 
 		return posts
 
+	@classmethod
+	def validate_params(cls, params):
+		error = cls._validate_params_base(params)
+
+		if params['type'] != 'blog':
+			error += 'Tipo inv&aacute;lido.'
+
+		return '<br>'.join(error) or True
+
+	@classmethod
+	def edit_instance(cls, params):
+		post = cls._edit_instance_base(params)
+
+		post.type_ = params['blog']
+
+		post.put()
+
+		return post
+
 
 class Event(ParentProjectPostEvent):
+	type = ndb.StringProperty(required=True, default='eventos')
+
 	@classmethod
 	def get_events(cls, n=0):
 		events = mc.get('events-n={}'.format(n))
 
 		if not events:
-			q_p = cls.query(parent=model_key('Event')).order(-cls.date)
+			q_p = cls.query(parent=model_key(cls)).order(-cls.date)
 
 			if n:
 				events = q_p.fetch(n)
@@ -115,3 +184,22 @@ class Event(ParentProjectPostEvent):
 			mc.set('events-n={}'.format(n), events)
 
 		return events
+
+	@classmethod
+	def validate_params(cls, params):
+		error = cls._validate_params_base(params)
+
+		if params['type'] != 'eventos':
+			error += 'Tipo inv&aacute;lido.'
+
+		return '<br>'.join(error) or True
+
+	@classmethod
+	def edit_instance(cls, params):
+		event = cls._edit_instance_base(params)
+
+		event.type_ = params['eventos']
+
+		event.put()
+
+		return event

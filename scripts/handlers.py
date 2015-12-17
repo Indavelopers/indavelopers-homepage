@@ -2,7 +2,7 @@
 
 # Project: "Indavelopers"
 # Script: handlers.py - Handlers
-# App identifier: indavelopers
+# App identifier: Indavelopers
 # URL: www.indavelopers.com
 # Author: Marcos Manuel Ortega - Indavelopers
 # Version: v4.0 - 12/2015
@@ -12,8 +12,8 @@
 import os
 import webapp2
 import jinja2
-
 from models import *
+from globals import *
 
 
 # Initialize Jinja2 environment
@@ -24,6 +24,38 @@ jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),
 
 # -- Handlers --
 class MainHandler(webapp2.RequestHandler):
+	@staticmethod
+	def flush_mc(keys=None):
+		if not (type(keys) is str or type(keys) is list or keys is None):
+			raise TypeError
+
+		max_retries = 50
+
+		if type(keys) is str:
+			for _ in xrange(max_retries):
+				if mc.delete(keys):
+					break
+
+			else:
+				return False
+
+		elif type(keys) is list:
+			for _ in xrange(max_retries):
+				if mc.delete_multi(keys):
+					break
+
+			else:
+				return False
+		else:
+			for _ in xrange(max_retries):
+				if mc.flush_all():
+					break
+
+			else:
+				return False
+
+		return True
+
 	def render(self, template, params=None):
 		if not params:
 			params = {}
@@ -115,32 +147,228 @@ class AdminHome(MainHandler):
 
 class AdminProjects(MainHandler):
 	def get(self):
-		self.render('admin-proyectos.html')
+		projects = Project.get_projects()
+
+		params = {'proyectos': projects}
+
+		self.render('admin-proyectos.html', params)
 
 
 class AdminProjectsEdit(MainHandler):
-	def get(self):
-		self.render('admin-proyectos-editar.html')
+	def get(self, id_):
+		new_project = id_ == 'nuevo'
+
+		type_ = self.request.get('tipo')
+
+		params = {}
+
+		if not new_project:
+			project = Project.get_by_id(id_)
+
+			if project:
+				params['title'] = project.title,
+				params['date'] = project.date,
+				params['description'] = html_to_markdown(project.description)
+				params['type'] = CONTENT_TYPES[type_]
+
+			else:
+				params['error'] = 'Proyecto no encontrado.'
+
+		self.render('admin-proyectos-editar.html', params)
+
+	def post(self, id_):
+		title = self.request.get('title')
+		description = self.request.get('description')
+		type_ = self.request.get('tipo')
+
+		new_project = id_ == 'nuevo'
+
+		error = ''
+
+		if not new_project:
+			project = Project.get_by_id(id_)
+
+			if not project:
+				error = 'Proyecto no encontrado.'
+
+		if not error:
+			project_params = {'instance': 'nuevo' if new_project else project,
+			                  'type': type_,
+			                  'title': title,
+			                  'description': description}
+
+			res = Project.validate_params(project_params)
+
+			if res:
+				Project.edit_instance(project_params)
+
+				self.flush_mc()
+
+			else:
+				error = res
+
+		if error:
+			params = {'error': error,
+			          'title': title,
+			          'description': description,
+			          'type': CONTENT_TYPES[type_]}
+
+			self.render('admin-proyectos-editar.html', params)
+
+		else:
+			self.redirect('/admin/proyectos')
 
 
 class AdminProjectsDelete(MainHandler):
-	def get(self):
-		self.render('admin-proyectos-editar.html')
+	def get(self, id_):
+		project = Project.get_by_id(id_)
+
+		type_ = self.request.get('tipo')
+
+		params = {}
+
+		if id_ != 'nuevo' and project:
+			params['project'] = project
+			params['type'] = CONTENT_TYPES[type_]
+
+		else:
+			params['error'] = 'Proyecto no encontrado.'
+
+		self.render('admin-proyectos-eliminar.html', params)
+
+	def post(self, id_):
+		project = Project.get_by_id(id_)
+
+		params = {}
+
+		if id_ != 'nuevo' and project:
+			project.delete_entity()
+
+		else:
+			params['error'] = 'Proyecto no encontrado.'
+
+		self.redirect('/admin/projects')
 
 
 class AdminNews(MainHandler):
 	def get(self):
-		self.render('admin-noticias.html')
+		posts = Post.get_posts()
+		events = Events.get_events()
+
+		params = {'posts': posts,
+		          'eventos': events}
+
+		self.render('admin-noticias.html', params)
 
 
 class AdminNewsEdit(MainHandler):
-	def get(self):
-		self.render('admin-noticias-editar.html')
+	def get(self, type_, id_):
+		if type_ == 'blog':
+			class_ = Blog
+		else:
+			class_ = Event
+
+		new_news = id_ == 'nuevo'
+
+		params = {}
+
+		if not new_news:
+			news = class_.get_by_id(id_)
+
+			if news:
+				params['title'] = news.title,
+				params['date'] = news.date,
+				params['description'] = html_to_markdown(news.description)
+				params['type'] = CONTENT_TYPES[type_]
+
+			else:
+				params['error'] = 'Noticia no encontrado.'
+
+		self.render('admin-noticias-editar.html', params)
+
+	def post(self, type_, id_):
+		title = self.request.get('title')
+		description = self.request.get('description')
+
+		if type_ == 'blog':
+			class_ = Blog
+		else:
+			class_ = Event
+
+		new_news = id_ == 'nuevo'
+
+		error = ''
+
+		if not new_news:
+			news = class_.get_by_id(id_)
+
+			if not news:
+				error = 'Noticia no encontrado.'
+
+		if not error:
+			news_params = {'instance': 'nuevo' if new_news else news,
+			               'title': title,
+			               'description': description}
+
+			res = class_.validate_params(news_params)
+
+			if res:
+				class_.edit_instance(news_params)
+
+				self.flush_mc()
+
+			else:
+				error = res
+
+		if error:
+			params = {'error': error,
+			          'title': title,
+			          'description': description,
+			          'type': CONTENT_TYPES[type_]}
+
+			self.render('admin-noticias-editar.html', params)
+
+		else:
+			self.redirect('/admin/noticias')
 
 
 class AdminNewsDelete(MainHandler):
-	def get(self):
-		self.render('admin-noticias-editar.html')
+	def get(self, type_, id_):
+		if type_ == 'blog':
+			class_ = Blog
+		else:
+			class_ = Event
+
+		instance = class_.get_by_id(id_)
+
+		params = {}
+
+		if id_ != 'nuevo' and instance:
+			params['instance'] = instance
+			params['type'] = CONTENT_TYPES[type_]
+
+		else:
+			params['error'] = 'Noticia no encontrada.'
+
+		self.render('admin-noticias-eliminar.html', params)
+
+	def post(self, type_, id_):
+		if type_ == 'blog':
+			class_ = Blog
+		else:
+			class_ = Event
+
+		instance = class_.get_by_id(id_)
+
+		params = {}
+
+		if id_ != 'nuevo' and instance:
+			instance.delete_entity()
+
+		else:
+			params['error'] = 'Noticia no encontrada.'
+
+		self.redirect('/admin/noticias')
 
 
 class Webmap(MainHandler):

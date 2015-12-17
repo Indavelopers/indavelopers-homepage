@@ -2,7 +2,7 @@
 
 # Project: "Indavelopers"
 # Script: main.py - App handler mapping
-# App identifier: indavelopers
+# App identifier: Indavelopers
 # URL: www.indavelopers.com
 # Author: Marcos Manuel Ortega - Indavelopers
 # Version: v4.0 - 12/2015
@@ -26,11 +26,11 @@ URLS = [('/', StaticPage),
         ('/mapa-web', StaticPage),
         ('/admin', AdminHome),
         ('/admin/proyectos', AdminProjects),
-        ('/admin/proyectos/(.*)', AdminProjectsEdit),
-        ('/admin/proyectos/(.*)/eliminar', AdminProjectsDelete),
+        ('/admin/proyectos/(\d+)', AdminProjectsEdit),
+        ('/admin/proyectos/(\d+)/eliminar', AdminProjectsDelete),
         ('/admin/noticias', AdminNews),
-        ('/admin/noticias/(blog|eventos)/(.*)', AdminNewsEdit),
-        ('/admin/noticias/(blog|eventos)(.*)/eliminar', AdminNewsDelete),
+        ('/admin/noticias/(blog|eventos)/(\d+)', AdminNewsEdit),
+        ('/admin/noticias/(blog|eventos)(\d+)/eliminar', AdminNewsDelete),
         ('/mapaweb', Webmap),
         ('/.*', Error404)]
 

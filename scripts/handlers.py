@@ -83,6 +83,15 @@ class StaticPage(MainHandler):
 		self.render(template)
 
 
+class ProjectsPage(MainHandler):
+	def get(self):
+		projects = Project.get_projects()
+
+		params = {'projects': projects}
+
+		self.render('proyectos.html', params)
+
+
 class Blog(MainHandler):
 	def get(self):
 		posts = Post.get_posts()
@@ -107,7 +116,7 @@ class Events(MainHandler):
 
 		params = {'events': events}
 
-		self.render('events.html', params)
+		self.render('eventos.html', params)
 
 
 class EventPage(MainHandler):
@@ -142,7 +151,7 @@ class AdminProjectsEdit(MainHandler):
 		params = {}
 
 		if not new_project:
-			project = Project.get_by_id(id_)
+			project = Project.get_by_id_(id_)
 
 			if project:
 				params['title'] = project.title
@@ -165,7 +174,7 @@ class AdminProjectsEdit(MainHandler):
 		error = ''
 
 		if not new_project:
-			project = Project.get_by_id(id_)
+			project = Project.get_by_id_(id_)
 
 			if not project:
 				error = 'Proyecto no encontrado.'
@@ -200,7 +209,7 @@ class AdminProjectsEdit(MainHandler):
 
 class AdminProjectsDelete(MainHandler):
 	def get(self, id_):
-		project = Project.get_by_id(id_)
+		project = Project.get_by_id_(id_)
 
 		type_ = self.request.get('tipo')
 
@@ -216,7 +225,7 @@ class AdminProjectsDelete(MainHandler):
 		self.render('admin-proyectos-eliminar.html', params)
 
 	def post(self, id_):
-		project = Project.get_by_id(id_)
+		project = Project.get_by_id_(id_)
 
 		params = {}
 
@@ -252,7 +261,7 @@ class AdminNewsEdit(MainHandler):
 		params = {}
 
 		if not new_news:
-			news = class_.get_by_id(id_)
+			news = class_.get_by_id_(id_)
 
 			if news:
 				params['title'] = news.title
@@ -279,7 +288,7 @@ class AdminNewsEdit(MainHandler):
 		error = ''
 
 		if not new_news:
-			news = class_.get_by_id(id_)
+			news = class_.get_by_id_(id_)
 
 			if not news:
 				error = 'Noticia no encontrado.'
@@ -318,7 +327,7 @@ class AdminNewsDelete(MainHandler):
 		else:
 			class_ = Event
 
-		instance = class_.get_by_id(id_)
+		instance = class_.get_by_id_(id_)
 
 		params = {}
 
@@ -337,7 +346,7 @@ class AdminNewsDelete(MainHandler):
 		else:
 			class_ = Event
 
-		instance = class_.get_by_id(id_)
+		instance = class_.get_by_id_(id_)
 
 		params = {}
 

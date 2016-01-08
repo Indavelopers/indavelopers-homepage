@@ -28,7 +28,7 @@ class ParentProjectPostEvent(ndb.Model):
 	description = ndb.StringProperty()
 
 	@classmethod
-	def get_by_id(cls, id_):
+	def get_by_id_(cls, id_):
 		return cls.get_by_id(int(id_), parent=model_key(cls))
 
 	@classmethod
@@ -78,20 +78,20 @@ class ParentProjectPostEvent(ndb.Model):
 
 
 class Project(ParentProjectPostEvent):
-	type_ = ndb.StringProperty(required=True, choices=['casos-exito', 'iniciativa-propia', 'experimentacion'])
+	type_ = ndb.StringProperty(required=True, choices=['success_cases', 'own_initiative', 'experimentation'])
 
 	@classmethod
 	def get_projects(cls):
 		projects = mc.get('projects')
 
 		if not projects:
-			q_p_sc = cls.query(cls.type_ == 'success_cases', parent=model_key(cls))
+			q_p_sc = cls.query(cls.type_ == 'success_cases', ancestor=model_key(cls))
 			projects_sc = list(q_p_sc.iter())
 
-			q_p_ow = cls.query(cls.type_ == 'own_initiative', parent=model_key(cls))
+			q_p_ow = cls.query(cls.type_ == 'own_initiative', ancestor=model_key(cls))
 			projects_ow = list(q_p_ow.iter())
 
-			q_p_ex = cls.query(cls.type_ == 'experimentation', parent=model_key(cls))
+			q_p_ex = cls.query(cls.type_ == 'experimentation', ancestor=model_key(cls))
 			projects_ex = list(q_p_ex.iter())
 
 			projects = {'success_cases': projects_sc,
@@ -131,7 +131,7 @@ class Post(ParentProjectPostEvent):
 		posts = mc.get('posts-n={}'.format(n))
 
 		if not posts:
-			q_p = cls.query(parent=model_key('Post')).order(-cls.date)
+			q_p = cls.query(ancestor=model_key('Post')).order(-cls.date)
 
 			if n:
 				posts = q_p.fetch(n)
@@ -172,7 +172,7 @@ class Event(ParentProjectPostEvent):
 		events = mc.get('events-n={}'.format(n))
 
 		if not events:
-			q_p = cls.query(parent=model_key(cls)).order(-cls.date)
+			q_p = cls.query(ancestor=model_key(cls)).order(-cls.date)
 
 			if n:
 				events = q_p.fetch(n)

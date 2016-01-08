@@ -9,10 +9,10 @@
 
 
 {% block content %}
-<h1><a href="/noticias/blog">Blog</a></h1>
+<h1>Blog</h1>
 
 <ul class="content">
-	{% for p in posts %{
+	{% for p in posts %}
 		<li>
 			<h2><a href="/noticias/blog/{{p.title_url}}">{{p.title}}</a></h2>
 

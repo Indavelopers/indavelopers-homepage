@@ -83,27 +83,6 @@ class StaticPage(MainHandler):
 		self.render(template)
 
 
-class Projects(MainHandler):
-	def get(self):
-		projects = Project.get_projects()
-
-		params = {'proyectos': projects}
-
-		self.render('proyectos.html', params)
-
-
-class News(MainHandler):
-	def get(self):
-		posts = Post.get_posts(3)
-
-		events = Events.get_events(3)
-
-		params = {'posts': posts,
-		          'eventos': events}
-
-		self.render('noticias.html', params)
-
-
 class Blog(MainHandler):
 	def get(self):
 		posts = Post.get_posts()
@@ -166,8 +145,8 @@ class AdminProjectsEdit(MainHandler):
 			project = Project.get_by_id(id_)
 
 			if project:
-				params['title'] = project.title,
-				params['date'] = project.date,
+				params['title'] = project.title
+				params['date'] = project.date
 				params['description'] = html_to_markdown(project.description)
 				params['type'] = CONTENT_TYPES[type_]
 
@@ -276,8 +255,8 @@ class AdminNewsEdit(MainHandler):
 			news = class_.get_by_id(id_)
 
 			if news:
-				params['title'] = news.title,
-				params['date'] = news.date,
+				params['title'] = news.title
+				params['date'] = news.date
 				params['description'] = html_to_markdown(news.description)
 				params['type'] = CONTENT_TYPES[type_]
 

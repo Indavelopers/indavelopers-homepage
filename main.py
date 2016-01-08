@@ -15,8 +15,6 @@ from scripts.handlers import *
 
 # -- Handler mapping --
 URLS = [('/', StaticPage),
-        ('/proyectos', Projects),
-        ('/noticias', News),
         ('/noticias/blog', Blog),
         ('/noticias/blog/(.*)', PostPage),
         ('/noticias/eventos', Events),

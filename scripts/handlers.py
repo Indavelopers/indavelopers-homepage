@@ -12,6 +12,8 @@
 import os
 import webapp2
 import jinja2
+import logging
+
 from models import *
 from globals import *
 
@@ -80,23 +82,37 @@ class StaticPage(MainHandler):
 		except KeyError:
 			template = 'error-404.html'
 
-		self.render(template)
+		params = {'page': page or 'inicio'}
+
+		self.render(template, params)
 
 
 class ProjectsPage(MainHandler):
 	def get(self):
 		projects = Project.get_projects()
 
-		params = {'projects': projects}
+		params = {'projects': projects,
+		          'page': 'proyectos'}
 
 		self.render('proyectos.html', params)
+
+
+class ProjectPage(MainHandler):
+	def get(self, title_url):
+		project = Project.get_by_title_url(title_url)
+
+		params = {'project': project,
+		          'page': 'proyectos'}
+
+		self.render('proyecto.html', params)
 
 
 class Blog(MainHandler):
 	def get(self):
 		posts = Post.get_posts()
 
-		params = {'posts': posts}
+		params = {'posts': posts,
+		          'page': 'blog'}
 
 		self.render('blog.html', params)
 
@@ -105,7 +121,8 @@ class PostPage(MainHandler):
 	def get(self, title_url):
 		post = Post.get_by_title_url(title_url)
 
-		params = {'post': post}
+		params = {'post': post,
+		          'page': 'blog'}
 
 		self.render('post.html', params)
 
@@ -114,7 +131,8 @@ class Events(MainHandler):
 	def get(self):
 		events = Event.get_events()
 
-		params = {'events': events}
+		params = {'events': events,
+		          'page': 'eventos'}
 
 		self.render('eventos.html', params)
 
@@ -123,7 +141,8 @@ class EventPage(MainHandler):
 	def get(self, title_url):
 		event = Event.get_by_title_url(title_url)
 
-		params = {'event': event}
+		params = {'event': event,
+		          'page': 'eventos'}
 
 		self.render('eventos.html', params)
 
@@ -137,7 +156,7 @@ class AdminProjects(MainHandler):
 	def get(self):
 		projects = Project.get_projects()
 
-		params = {'proyectos': projects}
+		params = {'projects': projects}
 
 		self.render('admin-proyectos.html', params)
 
@@ -155,12 +174,13 @@ class AdminProjectsEdit(MainHandler):
 
 			if project:
 				params['title'] = project.title
-				params['date'] = project.date
+				params['date'] = project.date   # todo datetime format
 				params['description'] = html_to_markdown(project.description)
-				params['type'] = CONTENT_TYPES[type_]
 
 			else:
 				params['error'] = 'Proyecto no encontrado.'
+
+		params['type'] = CONTENT_TYPES[type_]
 
 		self.render('admin-proyectos-editar.html', params)
 
@@ -187,7 +207,9 @@ class AdminProjectsEdit(MainHandler):
 
 			res = Project.validate_params(project_params)
 
-			if res:
+			if res is True:
+				project_params['type'] = PROJECTS_TYPES_TRADUCTION[project_params['type']]
+
 				Project.edit_instance(project_params)
 
 				self.flush_mc()
@@ -216,7 +238,9 @@ class AdminProjectsDelete(MainHandler):
 		params = {}
 
 		if id_ != 'nuevo' and project:
-			params['project'] = project
+			params['title'] = project.title
+			params['date'] = project.date   # todo datetime format
+			params['description'] = html_to_markdown(project.description)
 			params['type'] = CONTENT_TYPES[type_]
 
 		else:
@@ -232,45 +256,55 @@ class AdminProjectsDelete(MainHandler):
 		if id_ != 'nuevo' and project:
 			project.delete_entity()
 
-		else:
-			params['error'] = 'Proyecto no encontrado.'
+			self.flush_mc()
 
-		self.redirect('/admin/projects')
+		else:
+			params['error'] = 'Proyecto no encontrado.'     # todo renderizar plantilla
+
+		self.redirect('/admin/proyectos')
 
 
 class AdminNews(MainHandler):
 	def get(self):
 		posts = Post.get_posts()
-		events = Events.get_events()
+		events = Event.get_events()
 
 		params = {'posts': posts,
-		          'eventos': events}
+		          'events': events}
 
 		self.render('admin-noticias.html', params)
 
 
 class AdminNewsEdit(MainHandler):
 	def get(self, type_, id_):
+		error = ''
+
 		if type_ == 'blog':
-			class_ = Blog
-		else:
+			class_ = Post
+		elif type_ == 'eventos':
 			class_ = Event
+		else:
+			error = 'Tipo de noticia inv&aacute;lido.'
 
 		new_news = id_ == 'nuevo'
 
 		params = {}
 
-		if not new_news:
-			news = class_.get_by_id_(id_)
+		if not error:
+			if not new_news:
+				news = class_.get_by_id_(id_)
 
-			if news:
-				params['title'] = news.title
-				params['date'] = news.date
-				params['description'] = html_to_markdown(news.description)
-				params['type'] = CONTENT_TYPES[type_]
+				if news:
+					params['title'] = news.title
+					params['date'] = news.date      # todo datetime format
+					params['description'] = html_to_markdown(news.description)
+					params['type'] = CONTENT_TYPES[type_]
 
-			else:
-				params['error'] = 'Noticia no encontrado.'
+				else:
+					params['error'] = 'Noticia no encontrada.'
+
+		else:
+			params['error'] = error
 
 		self.render('admin-noticias-editar.html', params)
 
@@ -279,7 +313,7 @@ class AdminNewsEdit(MainHandler):
 		description = self.request.get('description')
 
 		if type_ == 'blog':
-			class_ = Blog
+			class_ = Post
 		else:
 			class_ = Event
 
@@ -296,11 +330,12 @@ class AdminNewsEdit(MainHandler):
 		if not error:
 			news_params = {'instance': 'nuevo' if new_news else news,
 			               'title': title,
-			               'description': description}
+			               'description': description,
+			               'type': type_}
 
 			res = class_.validate_params(news_params)
 
-			if res:
+			if res is True:
 				class_.edit_instance(news_params)
 
 				self.flush_mc()
@@ -323,16 +358,18 @@ class AdminNewsEdit(MainHandler):
 class AdminNewsDelete(MainHandler):
 	def get(self, type_, id_):
 		if type_ == 'blog':
-			class_ = Blog
+			class_ = Post
 		else:
 			class_ = Event
 
-		instance = class_.get_by_id_(id_)
+		news = class_.get_by_id_(id_)
 
 		params = {}
 
-		if id_ != 'nuevo' and instance:
-			params['instance'] = instance
+		if id_ != 'nuevo' and news:
+			params['title'] = news.title
+			params['date'] = news.date      # todo datetime format
+			params['description'] = html_to_markdown(news.description)
 			params['type'] = CONTENT_TYPES[type_]
 
 		else:
@@ -342,16 +379,18 @@ class AdminNewsDelete(MainHandler):
 
 	def post(self, type_, id_):
 		if type_ == 'blog':
-			class_ = Blog
+			class_ = Post
 		else:
 			class_ = Event
 
-		instance = class_.get_by_id_(id_)
+		news = class_.get_by_id_(id_)
 
 		params = {}
 
-		if id_ != 'nuevo' and instance:
-			instance.delete_entity()
+		if id_ != 'nuevo' and news:
+			news.delete_entity()
+
+			self.flush_mc()
 
 		else:
 			params['error'] = 'Noticia no encontrada.'
@@ -361,7 +400,7 @@ class AdminNewsDelete(MainHandler):
 
 class Webmap(MainHandler):
 	def get(self):
-		self.response.out.write('')
+		self.response.out.write('webmap')   # todo crear mapa web
 
 
 class Error404(MainHandler):

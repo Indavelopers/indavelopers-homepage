@@ -1,30 +1,35 @@
 {% extends "admin-base.html" %}
 
 {% block head %}
-<title>Proyectos | Panel de administración</title>
+<title>Editar proyecto | Panel de administración</title>
 {% endblock %}
 
 
 {% block content %}
-<div class="adminContent">
-    <h2>Editar proyecto</h2>
+<ul class="content">
+	<li id="content-presentation">
+		<h2>Editar proyecto</h2>
+	</li>
+    <li>
+		<h3>{{type | safe}}</h3>
 
-	<h3>{{type}}</h3>
+		{% if error %}
+			<p><strong>Error:</strong> {{error | safe}}</p>
+		{% endif %}
 
-	{% if error %}
-		<p>Error: {{error | safe}}</p>
-	{% endif %}
+		<form method="post">
+			<label for="title">Título:</label>
+			<input type="text" id="title" name="title" value="{{title}}">
 
-	<form>
-		<label for="title">Título:</label>
-		<input type="text" name="title" value="title">
+			{% if title %}
+				<label>Fecha: {{date}}</label>
+			{% endif %}
 
-		<label>Fecha: {{date}}</label>
+			<label for="description">Descripción:</label>
+			<textarea id="description" name="description">{{description}}</textarea>
 
-		<label for="description">Descripción:</label>
-		<textarea name="description">{{description}}</textarea>
-
-		<input type="submit" value="Editar">
-	</form>
-</div>
+			<input class="content-link" type="submit" value="Editar">
+		</form>
+	</li>
+</ul>
 {% endblock %}

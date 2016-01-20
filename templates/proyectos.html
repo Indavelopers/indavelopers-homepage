@@ -9,18 +9,23 @@
 
 
 {% block content %}
-<h1>Proyectos</h1>
-
 <ul class="content">
+	<li id="content-presentation">
+		<h1>Proyectos</h1>
+	</li>
 	<li>
 		<h2 id="casos-de-exito">Casos de éxito</h2>
 
 		<ul>
 			{% for p_sc in projects['success_cases'] %}
 				<li>
-					<h3>{{p_sc.title}}</h3>
+					<h3><a class="decorated_link_title" href="/proyectos/{{p_sc.title_url}}">{{p_sc.title}}</a></h3>
 
 					<p>{{p_sc.description}}</p>
+				</li>
+			{% else %}
+				<li>
+					<p class="centered">No hemos publicado aún nuestros proyectos para esta categoria.</p>
 				</li>
 			{% endfor %}
 		</ul>
@@ -32,9 +37,13 @@
 		<ul>
 			{% for p_oi in projects['own_initiative'] %}
 				<li>
-					<h3>{{p_oi.title}}</h3>
+					<h3><a class="decorated_link_title" href="/proyectos/{{p_oi.title_url}}">{{p_oi.title}}</a></h3>
 
 					<p>{{p_oi.description}}</p>
+				</li>
+			{% else %}
+				<li>
+					<p class="centered">No hemos publicado aún nuestros proyectos para esta categoria.</p>
 				</li>
 			{% endfor %}
 		</ul>
@@ -46,9 +55,13 @@
 		<ul>
 			{% for p_ex in projects['experimentation'] %}
 				<li>
-					<h3>{{p_ex.title}}</h3>
+					<h3><a class="decorated_link_title" href="/proyectos/{{p_ex.title_url}}">{{p_ex.title}}</a></h3>
 
 					<p>{{p_ex.description}}</p>
+				</li>
+			{% else %}
+				<li>
+					<p class="centered">No hemos publicado aún nuestros proyectos para esta categoria.</p>
 				</li>
 			{% endfor %}
 		</ul>

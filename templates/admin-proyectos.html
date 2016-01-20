@@ -6,66 +6,77 @@
 
 
 {% block content %}
-<div class="adminContent">
-    <h2>Proyectos</h2>
+<ul class="content">
+	<li id="content-presentation">
+		<h2>Proyectos</h2>
+	</li>
+	<li>
+		<h3>Casos de éxito</h3>
 
-	<ul class="adminList">
-		<li>
-			<h3>Casos de éxito</h3>
+		<ul>
+			{% for p_sc in projects['success_cases'] %}
+				<li>
+					<h3>{{p_sc.title}}</h3>
 
-			<ul>
-				{% for p_sc in projects['success_cases'] %}
-					<li>
-						<h3>{{p_sc.title}}</h3>
+					<p>{{p_sc.description}}</p>
 
-						<p>{{p_sc.description}}</p>
+					<a class="content-link" href="/admin/proyectos/{{p_sc.key.id()}}?tipo=casos-exito">Editar</a>
+					<a class="content-link" href="/admin/proyectos/{{p_sc.key.id()}}/eliminar?tipo=casos-exito">Eliminar</a>
+				</li>
+			{% else %}
+				<li>
+					<p class="centered">No hay aún proyectos en esta categoria.</p>
+				</li>
+			{% endfor %}
+		</ul>
 
-						<a href="/admin/proyectos/{{p_sc.key.id()}}">Editar</a>
-						<a href="/admin/proyectos/{{p_sc.key.id()}}/eliminar">Eliminar</a>
-					</li>
-				{% endfor %}
-			</ul>
+		<a class="content-link-alt" href="/admin/proyectos/nuevo?tipo=casos-exito">Nuevo</a>
+	</li>
 
-			<a href="/admin/proyectos/nuevo?tipo=casos-exito">Nuevo</a>
-		</li>
+	<li>
+		<h3>Iniciativa propia</h3>
 
-		<li>
-			<h3>Iniciativa propia</h3>
+		<ul>
+			{% for p_oi in projects['own_initiative'] %}
+				<li>
+					<h3>{{p_oi.title}}</h3>
 
-			<ul>
-				{% for p_oi in projects['own_initiative'] %}
-					<li>
-						<h3>{{p_oi.title}}</h3>
+					<p>{{p_oi.description}}</p>
 
-						<p>{{p_oi.description}}</p>
+					<a class="content-link" href="/admin/proyectos/{{p_oi.key.id()}}?tipo=iniciativa-propia">Editar</a>
+					<a class="content-link" href="/admin/proyectos/{{p_oi.key.id()}}/eliminar?tipo=iniciativa-propia">Eliminar</a>
+				</li>
+			{% else %}
+				<li>
+					<p class="centered">No hay aún proyectos en esta categoria.</p>
+				</li>
+			{% endfor %}
+		</ul>
 
-						<a href="/admin/proyectos/{{p_oi.key.id()}}">Editar</a>
-						<a href="/admin/proyectos/{{p_oi.key.id()}}/eliminar">Eliminar</a>
-					</li>
-				{% endfor %}
-			</ul>
+		<a class="content-link-alt" href="/admin/proyectos/nuevo?tipo=iniciativa-propia">Nuevo</a>
+	</li>
 
-			<a href="/admin/proyectos/nuevo?tipo=iniciativa-propia">Nuevo</a>
-		</li>
+	<li>
+		<h3>Experimentación</h3>
 
-		<li>
-			<h3>Experimentación</h3>
+		<ul>
+			{% for p_ex in projects['experimentation'] %}
+				<li>
+					<h3>{{p_ex.title}}</h3>
 
-			<ul>
-				{% for p_ex in projects['experimentation'] %}
-					<li>
-						<h3>{{p_ex.title}}</h3>
+					<p>{{p_ex.description}}</p>
 
-						<p>{{p_ex.description}}</p>
+					<a class="content-link" href="/admin/proyectos/{{p_ex.key.id()}}?tipo=experimentacion">Editar</a>
+					<a class="content-link" href="/admin/proyectos/{{p_ex.key.id()}}/eliminar?tipo=experimentacion">Eliminar</a>
+				</li>
+			{% else %}
+				<li>
+					<p class="centered">No hay aún proyectos en esta categoria.</p>
+				</li>
+			{% endfor %}
+		</ul>
 
-						<a href="/admin/proyectos/{{p_ex.key.id()}}">Editar</a>
-						<a href="/admin/proyectos/{{p_ex.key.id()}}/eliminar">Eliminar</a>
-					</li>
-				{% endfor %}
-			</ul>
-
-			<a href="/admin/proyectos/nuevo?tipo=experimetnacion">Nuevo</a>
-		</li>
-	</ul>
-</div>
+		<a class="content-link-alt" href="/admin/proyectos/nuevo?tipo=experimentacion">Nuevo</a>
+	</li>
+</ul>
 {% endblock %}

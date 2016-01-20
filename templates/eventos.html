@@ -9,14 +9,19 @@
 
 
 {% block content %}
-<h1>Eventos</h1>
-
 <ul class="content">
+	<li id="content-presentation">
+		<h1>Eventos</h1>
+	</li>
 	{% for e in events %}
 		<li>
-			<h2><a href="/noticias/blog/{{e.title_url}}">{{e.title}}</a></h2>
+			<h2><a class="decorated_link_title" href="/noticias/blog/{{e.title_url}}">{{e.title}}</a></h2>
 
 			<p>{{e.description}}</p>
+		</li>
+	{% else %}
+		<li>
+			<p class="centered">No hemos publicado aún eventos.</p>
 		</li>
 	{% endfor %}
 </ul>

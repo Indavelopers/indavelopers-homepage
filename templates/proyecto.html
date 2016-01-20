@@ -1,24 +1,24 @@
 {% extends "base.html" %}
 
 {% block head %}
-<meta name="description" content="Eventos | Indavelopers. Consultoría de datos. Soluciones de Big Data">
+<meta name="description" content="Proyectos | Indavelopers. Consultoría de datos. Soluciones de Big Data">
 <meta name="keywords" content="indavelopers, consultoría almería, big data, ingeniería de datos, aprendizaje automático, almería">
 	
-<title>Eventos | Indavelopers</title>
+<title>Proyectos | Indavelopers</title>
 {% endblock %}
 
 
 {% block content %}
 <ul class="content">
 	<li id="content-presentation">
-		<h1>Eventos</h1>
+		<h1>Proyectos</h1>
 	</li>
 	<li>
-		<h2>{{event.title}}</h2>
+		<h2>{{project.title}}</h2>
 
-		<p>{{event.description}}</p>
+		<p>{{project.description}}</p>
 
-		<a href="/noticias/eventos">Volver</a>
+		<a class="content-link" href="/proyectos">Volver</a>
 	</li>
 </ul>
 {% endblock %}

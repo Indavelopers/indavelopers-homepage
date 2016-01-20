@@ -15,23 +15,28 @@
 <body>
 	<div class="message">¡Disponibles próximamente!</div>
 
-	<div class="header">
-		<a href="/">Inicio</a>
-		<a href="/proyectos">Proyectos</a>
-		<a href="/blog">Blog</a>
-		<a href="/eventos">Eventos</a>
-		<a href="/contacto">Contacto</a>
-	</div>
+	<ul class="header">
+		<li><a {% if page == 'inicio' %}id="active"{% endif %}href="/">Inicio</a></li>
+		<li><a {% if page == 'proyectos' %}id="active"{% endif %}href="/proyectos">Proyectos</a></li>
+		<li><a {% if page == 'blog' %}id="active"{% endif %}href="/blog">Blog</a></li>
+		<li><a {% if page == 'eventos' %}id="active"{% endif %}href="/eventos">Eventos</a></li>
+		<li><a {% if page == 'contacto' %}id="active"{% endif %}href="/contacto">Contacto</a></li>
+	</ul>
 	
 	{% block content %}
 	{% endblock %}
 
 	<div class="footer">
-		<a href="http://www.twitter.com/Indavelopers"><img src="" alt="Twitter" title="Twitter"></a>
-        <a href="http://www.facebook.com/Indavelopers"><img src="" alt="Facebook" title="Facebook"></a>
-		<a href="https://github.com/Indavelopers"><img src="" alt="Github" title="Github"></a>
-		<a href="/aviso-legal">Aviso legal</a>
-		<a href="/mapa-web">Mapa web</a>
+		<ul class="footer-social">
+			<li><a href="http://www.twitter.com/Indavelopers"><img src="/static/img/twitter.png" alt="Twitter" title="Twitter"></a></li>
+			<li><a href="http://www.facebook.com/Indavelopers"><img src="/static/img/facebook.png" alt="Facebook" title="Facebook"></a></li>
+			<li><a href="https://github.com/Indavelopers"><img src="/static/img/github.png" alt="Github" title="Github"></a></li>
+		</ul>
+
+		<ul class="footer-links">
+			<li><a class="decorated_link" href="/aviso-legal">Aviso legal</a></li>
+			<li><a class="decorated_link" href="/mapa-web">Mapa web</a></li>
+		</ul>
 	</div>
 </body>
 </html>

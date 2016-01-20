@@ -9,14 +9,19 @@
 
 
 {% block content %}
-<h1>Blog</h1>
-
 <ul class="content">
+	<li id="content-presentation">
+		<h1>Blog</h1>
+	</li>
 	{% for p in posts %}
 		<li>
-			<h2><a href="/noticias/blog/{{p.title_url}}">{{p.title}}</a></h2>
+			<h2><a class="decorated_link_title" href="/noticias/blog/{{p.title_url}}">{{p.title}}</a></h2>
 
 			<p>{{p.description}}</p>
+		</li>
+	{% else %}
+		<li>
+			<p class="centered">No hemos publicado aún entradas en nuestro blog.</p>
 		</li>
 	{% endfor %}
 </ul>

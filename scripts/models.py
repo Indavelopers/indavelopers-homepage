@@ -9,6 +9,8 @@
 
 
 # -- Imports --
+import urllib
+
 from globals import *
 
 from google.appengine.ext import ndb
@@ -44,20 +46,18 @@ class ParentProjectPostEvent(ndb.Model):
 
 		return entity
 
-	@classmethod
-	def get_title_url(cls):
-		pass
+	def get_title_url(self):
+		return urllib.quote(self.title.replace(u' ', u'-').encode('utf-8'))
 
 	@classmethod
 	def _validate_params_base(cls, params):
 		error = []
 
 		if not validate_value(params['title'], 'title') or not validate_str(params['title']):
-			error += 'T&iactue;tulo inv&aacute;lido.'
-			# todo str to HTML
+			error.append('T&iacute;tulo inv&aacute;lido.')
 
 		if not validate_str(params['description'], 1400):
-			error += 'Descripci&oacute;n inv&aacute;lida.'
+			error.append('Descripci&oacute;n inv&aacute;lida.')
 
 		return error
 
@@ -69,6 +69,7 @@ class ParentProjectPostEvent(ndb.Model):
 			instance = params['instance']
 
 		instance.title = params['title']
+		instance.title_url = instance.get_title_url()
 		instance.description = markdown_to_html(params['description'])
 
 		return instance
@@ -124,8 +125,6 @@ class Project(ParentProjectPostEvent):
 
 
 class Post(ParentProjectPostEvent):
-	type = ndb.StringProperty(required=True, default='blog')
-
 	@classmethod
 	def get_posts(cls, n=0):
 		posts = mc.get('posts-n={}'.format(n))
@@ -157,16 +156,12 @@ class Post(ParentProjectPostEvent):
 	def edit_instance(cls, params):
 		post = cls._edit_instance_base(params)
 
-		post.type_ = params['blog']
-
 		post.put()
 
 		return post
 
 
 class Event(ParentProjectPostEvent):
-	type = ndb.StringProperty(required=True, default='eventos')
-
 	@classmethod
 	def get_events(cls, n=0):
 		events = mc.get('events-n={}'.format(n))
@@ -197,8 +192,6 @@ class Event(ParentProjectPostEvent):
 	@classmethod
 	def edit_instance(cls, params):
 		event = cls._edit_instance_base(params)
-
-		event.type_ = params['eventos']
 
 		event.put()
 

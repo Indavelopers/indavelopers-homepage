@@ -19,6 +19,10 @@ CONTENT_TYPES = {'casos-exito': 'Casos de &eacute;xito',
                  'blog': 'Posts',
                  'eventos': 'Eventos'}
 
+PROJECTS_TYPES_TRADUCTION = {'casos-exito': 'success_cases',
+                             'iniciativa-propia': 'own_initiative',
+                             'experimentacion': 'experimentation'}
+
 
 # -- Functions --
 def validate_value(value, value_type):
@@ -47,10 +51,10 @@ def validate_str(s, length=140):
 
 
 def markdown_to_html(text):
-	# todo
+	# todo markdown_to_html()
 	return text
 
 
 def html_to_markdown(text):
-	# todo
+	# todo html_to_markdown()
 	return text

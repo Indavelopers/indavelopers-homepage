@@ -1,27 +1,29 @@
 {% extends "admin-base.html" %}
 
 {% block head %}
-<title>Proyectos | Panel de administración</title>
+<title>Eliminar proyecto | Panel de administración</title>
 {% endblock %}
 
 
 {% block content %}
-<div class="adminContent">
-    <h2>Eliminar proyecto</h2>
+<ul class="content">
+	<li id="content-presentation">
+		<h2>Eliminar proyecto</h2>
+	</li>
+	<li>
+		<h3>{{type | safe}}</h3>
 
-	<h3>{{type}}</h3>
+		{% if error %}
+			<p>Error: {{error | safe}}</p>
+		{% endif %}
 
-	{% if error %}
-		<p>Error: {{error | safe}}</p>
-	{% endif %}
+		<h3>{{title}}</h3>
 
-	<h3>Título: {{title}}</h3>
+		<p>{{description}}</p>
 
-	<h3>Descripción</h3>
-	<p>{{description}}</p>
-
-	<form>
-		<input type="submit" value="Confirmar eliminación">
-	</form>
-</div>
+		<form method="post">
+			<input class="content-link" type="submit" value="Confirmar">
+		</form>
+	</li>
+</ul>
 {% endblock %}

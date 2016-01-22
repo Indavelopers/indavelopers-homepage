@@ -37,10 +37,3 @@ URLS = [('/', StaticPage),
 URLS = [(u[0] + '[/]?', u[1]) for u in URLS]
 
 app = webapp2.WSGIApplication(URLS, debug=True)
-
-# todo descripciones truncadas
-# todo markdown
-# todo Mapaweb actualizable
-
-# todo unit tests
-# todo integration tests

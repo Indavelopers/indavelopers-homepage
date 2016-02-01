@@ -30,4 +30,10 @@ Facebook: fb.com/Indavelopers
 La lista de todos del proyecto se puede encontrar en el archivo todo-list.md.
 
 ## Licencia
-Está licenciada bajo la licencia MIT. Esta licencia es de libre uso y requiere atribución al autor original. Más información sobre su licencia en LICENCIA.md.
+
+El repositorio está licenciado bajo la licencia MIT. Esta licencia es de libre uso y requiere atribución al autor original. Esta licencia abarca todo el contenido del repositorio excepto lo indicado a continuación.
+
+El logotipo, imágenes y denominaciones comerciales del mismo suponen una expcepción y están protegidos por copyright.
+ 
+Más información sobre la licencia en LICENCIA.md.
+

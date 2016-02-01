@@ -174,7 +174,7 @@ class AdminProjectsEdit(MainHandler):
 
 			if project:
 				params['title'] = project.title
-				params['date'] = project.date   # todo datetime format
+				params['date'] = project.date.strftime('%y/%m/%d %H:%M')
 				params['description'] = html_to_markdown(project.description)
 
 			else:
@@ -239,7 +239,7 @@ class AdminProjectsDelete(MainHandler):
 
 		if id_ != 'nuevo' and project:
 			params['title'] = project.title
-			params['date'] = project.date   # todo datetime format
+			params['date'] = project.date.strftime('%y/%m/%d %H:%M')
 			params['description'] = html_to_markdown(project.description)
 			params['type'] = CONTENT_TYPES[type_]
 
@@ -251,7 +251,7 @@ class AdminProjectsDelete(MainHandler):
 	def post(self, id_):
 		project = Project.get_by_id_(id_)
 
-		params = {}
+		error = ''
 
 		if id_ != 'nuevo' and project:
 			project.delete_entity()
@@ -259,9 +259,15 @@ class AdminProjectsDelete(MainHandler):
 			self.flush_mc()
 
 		else:
-			params['error'] = 'Proyecto no encontrado.'     # todo renderizar plantilla
+			error = 'Proyecto no encontrado.'
 
-		self.redirect('/admin/proyectos')
+			params = {'error': error}
+
+		if not error:
+			self.redirect('/admin/proyectos')
+
+		else:
+			self.render('admin-proyectos-eliminar.html', params)
 
 
 class AdminNews(MainHandler):
@@ -296,7 +302,7 @@ class AdminNewsEdit(MainHandler):
 
 				if news:
 					params['title'] = news.title
-					params['date'] = news.date      # todo datetime format
+					params['date'] = news.date.strftime('%y/%m/%d %H:%M')
 					params['description'] = html_to_markdown(news.description)
 					params['type'] = CONTENT_TYPES[type_]
 
@@ -368,7 +374,7 @@ class AdminNewsDelete(MainHandler):
 
 		if id_ != 'nuevo' and news:
 			params['title'] = news.title
-			params['date'] = news.date      # todo datetime format
+			params['date'] = news.date.strftime('%y/%m/%d %H:%M')
 			params['description'] = html_to_markdown(news.description)
 			params['type'] = CONTENT_TYPES[type_]
 
@@ -385,7 +391,7 @@ class AdminNewsDelete(MainHandler):
 
 		news = class_.get_by_id_(id_)
 
-		params = {}
+		error = ''
 
 		if id_ != 'nuevo' and news:
 			news.delete_entity()
@@ -393,9 +399,15 @@ class AdminNewsDelete(MainHandler):
 			self.flush_mc()
 
 		else:
-			params['error'] = 'Noticia no encontrada.'
+			error = 'Noticia no encontrada.'
 
-		self.redirect('/admin/noticias')
+			params = {'error': error}
+
+		if not error:
+			self.redirect('/admin/noticias')
+
+		else:
+			self.render('admin-noticias-eliminar.html', params)
 
 
 class Webmap(MainHandler):

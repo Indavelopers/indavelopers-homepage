@@ -15,15 +15,15 @@
 
 		{% if error %}
 			<p>Error: {{error | safe}}</p>
+		{% else %}
+			<h3>{{title}}</h3>
+
+			<p>{{description}}</p>
+
+			<form method="post">
+				<input class="content-link" type="submit" value="Confirmar">
+			</form>
 		{% endif %}
-
-		<h3>{{title}}</h3>
-
-		<p>{{description}}</p>
-
-		<form method="post">
-			<input class="content-link" type="submit" value="Confirmar">
-		</form>
 	</li>
 </ul>
 {% endblock %}

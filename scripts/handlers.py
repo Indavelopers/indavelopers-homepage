@@ -412,7 +412,21 @@ class AdminNewsDelete(MainHandler):
 
 class Webmap(MainHandler):
 	def get(self):
-		self.response.out.write('webmap')   # todo crear mapa web
+		webmap = []
+
+		projects = Project.get_projects()
+		posts = Post.get_posts()
+		events = Event.get_events()
+
+		for k in projects.keys():
+			webmap += [URL + '/proyectos/' + i.title_url for i in projects[k]]
+
+		webmap += [URL + '/blog/' + p.title_url for p in posts]
+		webmap += [URL + '/eventos/' + e.title_url for e in events]
+
+		webmap = '<br>'.join(webmap)
+
+		self.response.out.write(webmap)
 
 
 class Error404(MainHandler):

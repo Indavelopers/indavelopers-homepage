@@ -13,6 +13,8 @@ import re
 
 
 # -- Variables --
+URL = 'http://www.indavelopers.com'
+
 CONTENT_TYPES = {'casos-exito': 'Casos de &eacute;xito',
                  'iniciativa-propia': 'Iniciativa propia',
                  'experimentacion': 'Experimentaci&oacute;n',

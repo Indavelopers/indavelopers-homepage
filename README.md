@@ -18,6 +18,16 @@ Como aspectos interesantes de este proyecto, podemos destacar:
  - Sección de blog.
  - Sección de eventos.
 
+## Contacto
+Marcos Manuel Ortega
+www.indavelopers.como
+info@indavelopers.com
+Twitter: @Indavelopers
+Facebook: fb.com/Indavelopers
+
+## Todos 
+
 La lista de todos del proyecto se puede encontrar en el archivo todo-list.md.
 
+## Licencia
 Está licenciada bajo la licencia MIT. Esta licencia es de libre uso y requiere atribución al autor original. Más información sobre su licencia en LICENCIA.md.

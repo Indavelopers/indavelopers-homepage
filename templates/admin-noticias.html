@@ -18,7 +18,7 @@
 				<li>
 					<h3>{{p.title}}</h3>
 
-					<p>{{p.description}}</p>
+					<p>{{p.truncate_description()}}</p>
 
 					<a class="content-link" href="/admin/noticias/blog/{{p.key.id()}}">Editar</a>
 					<a class="content-link" href="/admin/noticias/blog/{{p.key.id()}}/eliminar">Eliminar</a>
@@ -41,7 +41,7 @@
 				<li>
 					<h3>{{n.title}}</h3>
 
-					<p>{{n.description}}</p>
+					<p>{{n.truncate_description()}}</p>
 
 					<a class="content-link" href="/admin/noticias/eventos/{{n.key.id()}}">Editar</a>
 					<a class="content-link" href="/admin/noticias/eventos/{{n.key.id()}}/eliminar">Eliminar</a>

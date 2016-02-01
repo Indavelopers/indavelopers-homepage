@@ -52,6 +52,10 @@ def validate_str(s, length=140):
 	return len(s) <= length if len(s) > 0 else False
 
 
+def truncate_text(s, length=300):
+	return s[:length]
+
+
 def markdown_to_html(text):
 	# todo markdown_to_html()
 	return text

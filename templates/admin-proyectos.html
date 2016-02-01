@@ -18,7 +18,7 @@
 				<li>
 					<h3>{{p_sc.title}}</h3>
 
-					<p>{{p_sc.description}}</p>
+					<p>{{p_sc.truncate_description()}}</p>
 
 					<a class="content-link" href="/admin/proyectos/{{p_sc.key.id()}}?tipo=casos-exito">Editar</a>
 					<a class="content-link" href="/admin/proyectos/{{p_sc.key.id()}}/eliminar?tipo=casos-exito">Eliminar</a>
@@ -41,7 +41,7 @@
 				<li>
 					<h3>{{p_oi.title}}</h3>
 
-					<p>{{p_oi.description}}</p>
+					<p>{{p_oi.truncate_description()}}</p>
 
 					<a class="content-link" href="/admin/proyectos/{{p_oi.key.id()}}?tipo=iniciativa-propia">Editar</a>
 					<a class="content-link" href="/admin/proyectos/{{p_oi.key.id()}}/eliminar?tipo=iniciativa-propia">Eliminar</a>
@@ -64,7 +64,7 @@
 				<li>
 					<h3>{{p_ex.title}}</h3>
 
-					<p>{{p_ex.description}}</p>
+					<p>{{p_ex.truncate_description()}}</p>
 
 					<a class="content-link" href="/admin/proyectos/{{p_ex.key.id()}}?tipo=experimentacion">Editar</a>
 					<a class="content-link" href="/admin/proyectos/{{p_ex.key.id()}}/eliminar?tipo=experimentacion">Eliminar</a>

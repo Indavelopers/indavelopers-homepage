@@ -77,6 +77,9 @@ class ParentProjectPostEvent(ndb.Model):
 	def delete_entity(self):
 		self.key.delete()
 
+	def truncate_description(self, lenght=300):
+		return self.description[:lenght]
+
 
 class Project(ParentProjectPostEvent):
 	type_ = ndb.StringProperty(required=True, choices=['success_cases', 'own_initiative', 'experimentation'])

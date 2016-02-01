@@ -72,6 +72,7 @@ a {
 
 .footer {
 	padding: 4rem 0 6rem;
+	color: white;
 	background: $auxiliary_color2;
 	
 	&-social {
@@ -150,6 +151,13 @@ a {
 			color: $secondary_color1;
 		}		
 	}
+}
+#content-presentation-portada {
+	@extend #content-presentation;
+	background-image: url("/static/img/grafo-transparente-800x747.png");
+	background-position: -5% 105%;
+	background-size: 40% auto;
+	background-repeat: no-repeat;
 }
 
 .content-link {

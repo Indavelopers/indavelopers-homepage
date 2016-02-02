@@ -41,7 +41,7 @@ def validate_value(value, value_type):
 		return False
 
 	regex_dict = {'id_instance': ur'^\d{1,16}$',
-	              'title': ur'^[\w -]{6,100}$'}
+	              'title': ur'^.{6,140}$'}
 
 	regex = re.compile(regex_dict[value_type], re.UNICODE)
 

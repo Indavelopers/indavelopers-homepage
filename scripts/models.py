@@ -10,6 +10,7 @@
 
 # -- Imports --
 import urllib
+import logging
 
 from globals import *
 
@@ -77,8 +78,8 @@ class ParentProjectPostEvent(ndb.Model):
 	def delete_entity(self):
 		self.key.delete()
 
-	def truncate_description(self, lenght=300):
-		return self.description[:lenght]
+	def show_description(self, lenght=300):
+		return self.description[:lenght].replace('\n', '<br>')
 
 
 class Project(ParentProjectPostEvent):

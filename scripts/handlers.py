@@ -21,7 +21,7 @@ from globals import *
 # Initialize Jinja2 environment
 template_dir = os.path.join(os.path.dirname(__file__), '../templates')
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),
-                               autoescape=True)
+                               autoescape=False)
 
 
 # -- Handlers --

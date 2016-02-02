@@ -1,5 +1,5 @@
 # TODO list
 
- - todo: Añadir markdown en edición de descripciones de post.
- - Test unitarios.
- - Test de integración.
+- todo: Add markdown to item descriptions edition.
+- todo: Unit tests.
+- todo: Integration tests.

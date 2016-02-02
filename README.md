@@ -1,39 +1,41 @@
-# README
+#README
 
-Éste es el repositorio de la página web www.indavelopers.com, dedicada a servir como página principal de Indavelopers - Consultoría de big data.
+This is the repository for the web page www.indavelopers.com, which serves as main web for Indavelopers - Data consultancy and Big Data solutions.
 
-Este proyecto utiliza los siguientes servicios, técnicas y tecnologías:
+This projects uses the following services, techniques and technologies:
 
- - Google App Engine para Python (2.7).
-   - Webapp2 como framework web.
-   - Jinja2 como motor de plantillas HTML.
+- Google App Engine on Python (2.7) runtime:
+	- Webapp2 as web framework.
+	- Jinja2 as HTML template engine.
    
- - SASS como preprocesador CSS.
+- SASS as CSS preprocessor.
 
-El objetivo de este repositorio es la divulgación de conocimiento, mostrando un ejemplo de web real.
+The purpose of this repository is the free divulgation of knowledge, showing a real example of use case.
 
-Como aspectos interesantes de este proyecto, podemos destacar:
+As the main interesting aspects of this projects, we can emphasize:
 
- - Sección de proyectos (3 tipos).
- - Sección de blog.
- - Sección de eventos.
+- Projects section (3 types).
+- Blog.
+- Events.
 
-## Contacto
+All of them editable from the admin panel.
+
+## Contact
 Marcos Manuel Ortega
 www.indavelopers.como
 info@indavelopers.com
 Twitter: @Indavelopers
 Facebook: fb.com/Indavelopers
 
-## Todos 
+## To-dos 
 
-La lista de todos del proyecto se puede encontrar en el archivo todo-list.md.
+The to-do list with future modifications and contributing oportunities can be found in the todo-list.md file.
 
-## Licencia
+## Licence
 
-El repositorio está licenciado bajo la licencia MIT. Esta licencia es de libre uso y requiere atribución al autor original. Esta licencia abarca todo el contenido del repositorio excepto lo indicado a continuación.
+This repository and its content is licensed under MIT license. This license grants free use and requires original author atribution. This license covers the whole content except for what is stated next.
 
-El logotipo, imágenes y denominaciones comerciales del mismo suponen una expcepción y están protegidos por copyright.
+Logotypes, images and commercial denominations are protected by copyright and cannot be use without prior consent from the owner.
  
-Más información sobre la licencia en LICENCIA.md.
+More information on the license in LICENCIA.md.
 

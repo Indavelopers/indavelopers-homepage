@@ -14,9 +14,13 @@
 		<h1>Eventos</h1>
 	</li>
 	<li>
+		{% if event %}
 		<h2>{{event.title}}</h2>
 
 		<p>{{event.show_description()}}</p>
+		{% else %}
+		<h2>Evento no encontrado</h2>
+		{% endif %}
 
 		<a class="content-link" href="/eventos">Volver</a>
 	</li>

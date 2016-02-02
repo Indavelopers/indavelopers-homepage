@@ -412,7 +412,7 @@ class AdminNewsDelete(MainHandler):
 
 class Webmap(MainHandler):
 	def get(self):
-		webmap = []
+		webmap = [URL + u for u in ['/proyectos', '/blog', '/eventos', '/contacto', '/aviso-legal', 'mapa-web']]
 
 		projects = Project.get_projects()
 		posts = Post.get_posts()

@@ -14,9 +14,13 @@
 		<h1>Blog</h1>
 	</li>
 	<li>
+		{% if post %}
 		<h2>{{post.title}}</h2>
 
 		<p>{{post.show_description()}}</p>
+		{% else %}
+		<h2>Post no encontrado</h2>
+		{% endif %}
 
 		<a class="content-link" href="/blog">Volver</a>
 	</li>

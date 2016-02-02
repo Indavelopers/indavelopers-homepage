@@ -36,6 +36,8 @@ class ParentProjectPostEvent(ndb.Model):
 
 	@classmethod
 	def get_by_title_url(cls, title_url):
+		title_url = urllib.quote(title_url)
+
 		entity = mc.get('entity-kind={}-title_url={}'.format(cls.__name__, title_url))
 
 		if not entity:
@@ -43,7 +45,7 @@ class ParentProjectPostEvent(ndb.Model):
 
 			entity = q_e.get()
 
-			mc.set('entity-kind={}-title_url={}'.format(cls.__name__, title_url), title_url)
+			mc.set('entity-kind={}-title_url={}'.format(cls.__name__, title_url), entity)
 
 		return entity
 

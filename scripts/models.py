@@ -13,7 +13,6 @@ import urllib
 import logging
 
 from globals import *
-from bin import markdown
 
 from google.appengine.ext import ndb
 from google.appengine.api import memcache as mc

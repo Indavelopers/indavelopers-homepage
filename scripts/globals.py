@@ -11,6 +11,8 @@
 # -- Imports --
 import re
 
+from bin import markdown
+
 
 # -- Variables --
 URL = 'http://www.indavelopers.com'
@@ -58,4 +60,6 @@ def truncate_text(s, length=300):
 
 def markdown_to_html(text):
 	# todo markdown_to_html()
-	return text
+	md = markdown.Markdown()
+
+	return md.convert(text)

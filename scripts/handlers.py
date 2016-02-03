@@ -303,7 +303,7 @@ class AdminNewsEdit(MainHandler):
 				if news:
 					params['title'] = news.title
 					params['date'] = news.date.strftime('%y/%m/%d %H:%M')
-					params['description'] = news.show_description()
+					params['description'] = news.description_md
 					params['type'] = CONTENT_TYPES[type_]
 
 				else:

@@ -10,6 +10,7 @@
 
 # -- Imports --
 import urllib
+import string
 import logging
 
 from globals import *
@@ -82,14 +83,8 @@ class ParentProjectPostEvent(ndb.Model):
 	def delete_entity(self):
 		self.key.delete()
 
-	def show_description(self, lenght=None):
-		if lenght:
-			return self.description_html[:lenght].replace('\n', '<br>')
-
-		else:
-			return self.description_html.replace('\n', '<br>')
-
-		# todo Tag a medias no cortar
+	def show_description(self):
+		return self.description_html
 
 
 class Project(ParentProjectPostEvent):

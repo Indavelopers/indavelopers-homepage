@@ -175,6 +175,11 @@ a {
 		background: $secondary_color1;
 	}
 }
+.content-link-short {
+	@extend .content-link;
+	width: 6rem;
+	margin: 1rem auto;
+}
 .content-link-wide {
 	@extend .content-link;
 	width: 14rem;
@@ -250,6 +255,11 @@ textarea {
 
 .centered {
 	text-align: center;
+}
+
+.description_cropped {
+	max-height: 16rem;
+	overflow-y: hidden;
 }
 
 .decorated_link:hover, .decorated_link_title:hover {

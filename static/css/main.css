@@ -103,7 +103,7 @@ a {
   background-size: 40% auto;
   background-repeat: no-repeat; }
 
-.content-link, .content-link-wide, .content-link-alt {
+.content-link, .content-link-short, .content-link-wide, .content-link-alt {
   display: block;
   width: 10rem;
   margin: 2rem auto;
@@ -113,8 +113,12 @@ a {
   color: white;
   background: #00a0e4;
   border: none; }
-  .content-link:hover, .content-link-wide:hover, .content-link-alt:hover {
+  .content-link:hover, .content-link-short:hover, .content-link-wide:hover, .content-link-alt:hover {
     background: #f0801b; }
+
+.content-link-short {
+  width: 6rem;
+  margin: 1rem auto; }
 
 .content-link-wide {
   width: 14rem; }
@@ -184,6 +188,10 @@ textarea {
 
 .centered {
   text-align: center; }
+
+.description_cropped {
+  max-height: 16rem;
+  overflow-y: hidden; }
 
 .decorated_link:hover, .decorated_link_title:hover {
   color: #fdc64a; }

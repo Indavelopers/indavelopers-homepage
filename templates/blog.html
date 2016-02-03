@@ -17,7 +17,9 @@
 		<li>
 			<h2><a class="decorated_link_title" href="/blog/{{p.title_url}}">{{p.title}}</a></h2>
 
-			<p>{{p.show_description(300)}}</p>
+			<div class="description_cropped">{{p.show_description()}}</div>
+
+			<a class="content-link-short" href="/blog/{{p.title_url}}">Leer más</a>
 		</li>
 	{% else %}
 		<li>

@@ -21,7 +21,7 @@
 				<li>
 					<h3><a class="decorated_link_title" href="/proyectos/{{p_sc.title_url}}">{{p_sc.title}}</a></h3>
 
-					<p>{{p_sc.show_description(300)}}</p>
+					<div>{{p_sc.show_description()}}</div>
 				</li>
 			{% else %}
 				<li>
@@ -39,7 +39,7 @@
 				<li>
 					<h3><a class="decorated_link_title" href="/proyectos/{{p_oi.title_url}}">{{p_oi.title}}</a></h3>
 
-					<p>{{p_oi.show_description(300)}}</p>
+					<div class="description_cropped">{{p_oi.show_description()}}</div>
 				</li>
 			{% else %}
 				<li>
@@ -57,7 +57,7 @@
 				<li>
 					<h3><a class="decorated_link_title" href="/proyectos/{{p_ex.title_url}}">{{p_ex.title}}</a></h3>
 
-					<p>{{p_ex.show_description(300)}}</p>
+					<div>{{p_ex.show_description()}}</div>
 				</li>
 			{% else %}
 				<li>

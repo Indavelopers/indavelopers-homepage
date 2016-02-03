@@ -175,7 +175,7 @@ class AdminProjectsEdit(MainHandler):
 			if project:
 				params['title'] = project.title
 				params['date'] = project.date.strftime('%y/%m/%d %H:%M')
-				params['description'] = html_to_markdown(project.description)
+				params['description'] = project.description_md
 
 			else:
 				params['error'] = 'Proyecto no encontrado.'
@@ -240,7 +240,7 @@ class AdminProjectsDelete(MainHandler):
 		if id_ != 'nuevo' and project:
 			params['title'] = project.title
 			params['date'] = project.date.strftime('%y/%m/%d %H:%M')
-			params['description'] = html_to_markdown(project.description)
+			params['description'] = project.show_description()
 			params['type'] = CONTENT_TYPES[type_]
 
 		else:
@@ -303,7 +303,7 @@ class AdminNewsEdit(MainHandler):
 				if news:
 					params['title'] = news.title
 					params['date'] = news.date.strftime('%y/%m/%d %H:%M')
-					params['description'] = html_to_markdown(news.description)
+					params['description'] = news.show_description()
 					params['type'] = CONTENT_TYPES[type_]
 
 				else:
@@ -375,7 +375,7 @@ class AdminNewsDelete(MainHandler):
 		if id_ != 'nuevo' and news:
 			params['title'] = news.title
 			params['date'] = news.date.strftime('%y/%m/%d %H:%M')
-			params['description'] = html_to_markdown(news.description)
+			params['description'] = news.show_description()
 			params['type'] = CONTENT_TYPES[type_]
 
 		else:

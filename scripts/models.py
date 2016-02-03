@@ -13,6 +13,7 @@ import urllib
 import logging
 
 from globals import *
+from bin import markdown
 
 from google.appengine.ext import ndb
 from google.appengine.api import memcache as mc
@@ -28,7 +29,8 @@ class ParentProjectPostEvent(ndb.Model):
 	title = ndb.StringProperty(required=True)
 	title_url = ndb.StringProperty(required=True)
 	date = ndb.DateTimeProperty(auto_now=True)
-	description = ndb.StringProperty()
+	description_html = ndb.StringProperty()
+	description_md = ndb.StringProperty()
 
 	@classmethod
 	def get_by_id_(cls, id_):
@@ -73,15 +75,22 @@ class ParentProjectPostEvent(ndb.Model):
 
 		instance.title = params['title']
 		instance.title_url = instance.get_title_url()
-		instance.description = markdown_to_html(params['description'])
+		instance.description_md = params['description']
+		instance.description_html = markdown_to_html(instance.description_md)
 
 		return instance
 
 	def delete_entity(self):
 		self.key.delete()
 
-	def show_description(self, lenght=300):
-		return self.description[:lenght].replace('\n', '<br>')
+	def show_description(self, lenght=None):
+		if lenght:
+			return self.description_html[:lenght].replace('\n', '<br>')
+
+		else:
+			return self.description_html.replace('\n', '<br>')
+
+		# todo Tag a medias no cortar
 
 
 class Project(ParentProjectPostEvent):

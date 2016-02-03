@@ -59,8 +59,3 @@ def truncate_text(s, length=300):
 def markdown_to_html(text):
 	# todo markdown_to_html()
 	return text
-
-
-def html_to_markdown(text):
-	# todo html_to_markdown()
-	return text

@@ -20,18 +20,18 @@ As the main interesting aspects of this projects, we can emphasize:
 
 All of them editable from the admin panel.
 
-## Contact
+##Contact
 Marcos Manuel Ortega
 www.indavelopers.como
 info@indavelopers.com
 Twitter: @Indavelopers
 Facebook: fb.com/Indavelopers
 
-## To-dos 
+##To-dos 
 
 The to-do list with future modifications and contributing oportunities can be found in the todo-list.md file.
 
-## Licence
+##License
 
 This repository and its content is licensed under MIT license. This license grants free use and requires original author atribution. This license covers the whole content except for what is stated next.
 

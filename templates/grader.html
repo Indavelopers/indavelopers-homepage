@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block head %}
+<meta name="description" content="Autoevaluador | Indavelopers. Consultoría de datos. Soluciones de Big Data">
+	
+<title>Autoevaluador | Indavelopers</title>
+{% endblock %}
+
+
+{% block content %}
+{% if error %}
+<p>Error: {{error | safe}}</p>
+{% endif %}
+
+<ul class="content">
+	<li id="content-presentation">
+		<h1>Autoevaluador</h1>
+	</li>
+	<li>
+		<h2>{{grader_title}}</h2>
+
+		{% if status %}
+		<h3>URL de tu aplicación web</h3>
+		{% else %}
+		<h3>Autoevaluador disponible próximamente</h3>
+		{% endif %}
+	</li>
+</ul>
+{% endblock %}

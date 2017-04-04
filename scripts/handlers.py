@@ -147,6 +147,19 @@ class EventPage(MainHandler):
 		self.render('eventos.html', params)
 
 
+class AutograderPage(MainHandler):
+	def get(self, grader_url):
+		params = {}
+
+		if grader_url != 'intro-a-gae-wiki':
+			params['error'] = ''
+		else:
+			params['grader_title'] = 'Desarrollo de un portal de wiki'
+			params['status'] = False
+
+		self.render('grader.html', params)
+
+
 class AdminHome(MainHandler):
 	def get(self):
 		self.render('admin-inicio.html')

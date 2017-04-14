@@ -152,7 +152,7 @@ class AutograderPage(MainHandler):
 		params = {}
 
 		if grader_url != 'intro-a-gae-wiki':
-			params['error'] = ''
+			params['error'] = 'El autoevaluador que buscas no existe. ¿Has comprobado la URL?'
 		else:
 			params['grader_title'] = 'Desarrollo de un portal de wiki'
 			params['status'] = False

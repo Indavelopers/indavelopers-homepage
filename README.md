@@ -1,4 +1,4 @@
-#README
+# README
 
 This is the repository for the web page www.indavelopers.com, which serves as main web for Indavelopers - Data consultancy and Big Data solutions.
 
@@ -20,14 +20,15 @@ As the main interesting aspects of this projects, we can emphasize:
 
 All of them editable from the admin panel.
 
-##Contact
-Marcos Manuel Ortega
-www.indavelopers.como
-info@indavelopers.com
-Twitter: @Indavelopers
-Facebook: fb.com/Indavelopers
+## Contact
 
-##To-dos 
+- Marcos Manuel Ortega
+- www.indavelopers.com
+- info@indavelopers.com
+- Twitter: @Indavelopers
+- Facebook: fb.com/Indavelopers
+
+## To-dos
 
 The to-do list with future modifications and contributing oportunities can be found in the todo-list.md file.
 

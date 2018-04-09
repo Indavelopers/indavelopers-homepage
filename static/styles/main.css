@@ -1,10 +1,15 @@
 #intro {
-  background: url("../img/panorama-3094696_1920.jpg") no-repeat center center;
-  background-size: cover;
+  background: url("../img/logo-indavelopers.png") no-repeat center center;
+  background-size: contain;
+}
+
+#contacto {
+    background: url("../img/grafo.png") no-repeat center center;
+    background-size: auto;
 }
 
 .top-nav-collapse {
-  background-color: #3949ab !important;
+  background-color: #006fb7 !important;
 }
 
 .navbar:not(.top-nav-collapse) {
@@ -13,7 +18,7 @@
 
 @media (max-width: 768px) {
   .navbar:not(.top-nav-collapse) {
-    background: #3949ab !important;
+    background: #006fb7 !important;
   }
 }
 
@@ -23,8 +28,8 @@
 }
 
 .hm-gradient .full-bg-img {
-  background: rgba(42, 27, 161, 0.7);
-  background: linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+  background: rgba(0, 160, 228, 0.7);
+  background: linear-gradient(45deg, rgba(0, 160, 228, 0.75), rgba(101, 199, 242, 0.5) 100%);
 }
 
 @media (max-width: 450px) {
@@ -34,14 +39,65 @@
   }
 }
 
-#pricing .lead {
+#areas .lead {
   opacity: 0.7;
 }
 
-#pricing .card-image {
-  background: url("../img/architecture.jpg") no-repeat center center;
+#areas .card-image {
+    background: linear-gradient(to bottom, rgba(253, 198, 74, 0.75), rgba(240, 128, 27, 0.5));
+    background-color: #fdc64a;
+    background-size: cover;
 }
 
-#pricing ul li {
+#areas ul li {
   font-size: 1.1em;
 }
+
+.blue-text {
+    color: #006fb7;
+}
+.blue2-text {
+    color: #65c7f2;
+}
+.blue22-text {
+    color: #00385c;
+}
+.orange1-text {
+    color: #f0801b;
+}
+.orange2-text {
+    color: #fdc64a;
+}
+
+.bg-blue21 {
+    background-color: #00a0e4;
+}
+.bg-blue22 {
+    background-color: #00385c;
+}
+.bg-blue32 {
+    background-color: #15a3ff;
+}
+.bg-blue42 {
+    background-color: #71c7ff;
+}
+.bg-orange1 {
+    background-color: #f0801b;
+}
+.bg-orange2 {
+    background-color: #fdc64a;
+}
+
+.btn-blue1 {
+    background-color: #006fb7 !important;
+    color: #fff !important; }
+.btn-blue1:hover {
+    background-color: #65c7f2; }
+.btn-blue1:focus, .btn-blue1:active, .btn-blue1.active {
+    background-color: #f0801b; }
+.btn-blue1.dropdown-toggle {
+    background-color: #fdc64a !important; }
+.btn-blue1.dropdown-toggle:hover, .btn-blue1.dropdown-toggle:focus {
+    background-color: #fdc64aff !important; }
+.btn-blue1:not([disabled]):not(.disabled):active, .btn-blue1:not([disabled]):not(.disabled).active, .show > .btn-blue1.dropdown-toggle {
+    background-color: #f0801b !important; }

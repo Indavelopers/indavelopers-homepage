@@ -1,0 +1,14 @@
+# Default
+.gcloudignore
+.git
+.gitignore
+
+# Skipped files
+^(.*/)?#.*#$
+^(.*/)?.*~$
+^(.*/)?.*\.py[co]$
+^(.*/)?.*/RCS/.*$
+^(.*/)?\..*$
+^(.*/)?.*\.map$
+^(.*/)?.*\.scss$
+^(.*/)?.*\.md$

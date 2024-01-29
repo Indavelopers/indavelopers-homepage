@@ -25,6 +25,7 @@
 1. Deploy to GAE: 'gcloud app deploy --version VERSION_ID --no-promote
 1. Check on live version URL
 1. Migrate traffic to new version
+1. Push changes to remote repo
 
 
 ## Architecture

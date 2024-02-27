@@ -1,8 +1,6 @@
 # Development processes
 
 ## To-dos
-- Migrate to
-    - JQuery 3.5+
 - Check colors
 - Check UX issues
 - Add Google Analytics

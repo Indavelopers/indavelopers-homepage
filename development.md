@@ -1,11 +1,5 @@
 # Development processes
 
-## To-dos
-- Check colors
-- Check UX issues
-- Add Google Analytics
-- Check docs
-
 
 ## Dev process
 

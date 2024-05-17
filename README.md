@@ -16,6 +16,10 @@ The purpose of this repository is the free divulgation of knowledge, showing a r
 - Twitter: @Indavelopers
 - Facebook: fb.com/Indavelopers
 
+## Development
+- Development instructions on `development.md`
+- Open to-dos on `TODOs.md`
+
 ## License
 This repository and its content is NOT licensed for its use, as it also contains content property of [Teamflip](https://templateflip.com/) (HTML template).
 

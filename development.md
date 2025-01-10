@@ -14,6 +14,7 @@
 1. Check on `localhost:5000` (default Flask port)
 
 ### Deploy
+1. Choose GCP project in Cloud SDK and/or IDE: `gcloud config project set indavelopers`, `indavelopers`
 1. Deploy to GAE: `gcloud app deploy --version VERSION_ID --no-promote`
 1. Check on live version URL
 1. Migrate traffic to new version: `gcloud app services set-traffic --splits="VERSION_ID"=1`

@@ -27,4 +27,4 @@ The purpose of this repository is the free divulgation of knowledge, showing a r
 
 This repository and its content is NOT licensed for its use, as it also contains content property of [Teamflip](https://templateflip.com/) (HTML template).
 
-It is only shared here for educational reading purposes.
+It is only shared here for educational purposes.

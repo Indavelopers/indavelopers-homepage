@@ -4,7 +4,6 @@
 
 ### Dev
 
-1. Open project dir: `cd indavelopers-homepage`
 1. Fetch new repo updates: `git fetch origin master`
 1. Check repo history: `git log --oneline --graph --all`
 1. Check Pyenv's Python version: `which python && python -V`
@@ -15,7 +14,8 @@
 
 ### Deploy
 
-1. Choose GCP project in Cloud SDK and/or IDE: `gcloud config project set indavelopers`, `indavelopers`
+1. Choose GCP project in Cloud SDK and/or IDE: `gcloud config project set indavelopers`
+1. Check serving version: `gcloud app versions list`
 1. Deploy to GAE: `gcloud app deploy --version VERSION_ID --no-promote`
 1. Check on live version URL
 1. Migrate traffic to new version: `gcloud app services set-traffic --splits="VERSION_ID"=1`
